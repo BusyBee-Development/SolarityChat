@@ -37,6 +37,7 @@ public final class SolarityChat extends JavaPlugin {
     private AnnouncementManager announcementManager;
     private GrammarManager grammarManager;
     private ChannelManager channelManager;
+    private ColorCommand colorCommand;
 
     @Override
     public void onEnable() {
@@ -47,6 +48,7 @@ public final class SolarityChat extends JavaPlugin {
         saveResourceIfNotPresent("chat" + File.separator + "tags.yml");
         saveResourceIfNotPresent("chat" + File.separator + "announcements.yml");
         saveResourceIfNotPresent("chat" + File.separator + "channels.yml");
+        saveResourceIfNotPresent("chat" + File.separator + "colors.yml");
 
         configManager = new ConfigManager(this);
         databaseManager = new DatabaseManager(this);
@@ -76,7 +78,8 @@ public final class SolarityChat extends JavaPlugin {
         getCommand("solaritychat").setExecutor(new SolarityChatCommand(this));
         getCommand("tags").setExecutor(new TagCommand(this, tagGUI));
         getCommand("clearchat").setExecutor(new ClearChatCommand());
-        getCommand("colors").setExecutor(new ColorCommand(this));
+        colorCommand = new ColorCommand(this);
+        getCommand("colors").setExecutor(colorCommand);
         getCommand("channel").setExecutor(new ChannelCommand(this));
 
         MessageCommand msgCommand = new MessageCommand(this);
@@ -114,6 +117,9 @@ public final class SolarityChat extends JavaPlugin {
         announcementManager.reload();
         grammarManager.loadConfig();
         channelManager.loadChannels();
+        if (colorCommand != null) {
+            colorCommand.loadColorConfig();
+        }
     }
 
     private void saveResourceIfNotPresent(String resourcePath) {

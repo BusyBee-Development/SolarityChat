@@ -2,8 +2,6 @@ enabled: true
 
 default-format: "default"
 
-# You can use MiniMessage tags like <gradient>, <hover>, <click>, etc.
-# Placeholders from PlaceholderAPI are supported.
 formats:
   default:
     priority: 0
@@ -34,7 +32,7 @@ formats:
       text: '%luckperms_suffix% %tag%'
     
     message:
-      text: '<dark_gray>: <white>%message%'
+      text: '<dark_gray>:</dark_gray> %message%'
 
 formatting:
   allow-color-codes: true

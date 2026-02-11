@@ -136,7 +136,10 @@ public class ChatListener implements Listener {
 
         if (customColor != null) {
             String sanitized = sanitizeUserInput(plainMessage);
-            if (customColor.startsWith("&") || customColor.startsWith("§")) {
+            if (customColor.startsWith("&#") && customColor.length() >= 8) {
+                String hex = customColor.substring(1);
+                message = miniMessage.deserialize("<color:" + hex + ">" + sanitized);
+            } else if (customColor.startsWith("&") || customColor.startsWith("§")) {
                 String miniColor = MessageUtil.legacyToMini(customColor);
                 message = miniMessage.deserialize(miniColor + sanitized);
             } else if (customColor.startsWith("<")) {

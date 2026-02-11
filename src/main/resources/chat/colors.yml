@@ -1,0 +1,113 @@
+colors:
+  red:
+    display-name: "<red>Red"
+    material: RED_WOOL
+    code: "&c"
+    permission: "solaritychat.color.red"
+    slot: 10
+
+  blue:
+    display-name: "<blue>Blue"
+    material: BLUE_WOOL
+    code: "&9"
+    permission: "solaritychat.color.blue"
+    slot: 11
+
+  green:
+    display-name: "<green>Green"
+    material: LIME_WOOL
+    code: "&a"
+    permission: "solaritychat.color.green"
+    slot: 12
+
+  yellow:
+    display-name: "<yellow>Yellow"
+    material: YELLOW_WOOL
+    code: "&e"
+    permission: "solaritychat.color.yellow"
+    slot: 13
+
+  aqua:
+    display-name: "<aqua>Aqua"
+    material: CYAN_WOOL
+    code: "&b"
+    permission: "solaritychat.color.aqua"
+    slot: 14
+
+  light_purple:
+    display-name: "<light_purple>Light Purple"
+    material: PINK_WOOL
+    code: "&d"
+    permission: "solaritychat.color.lightpurple"
+    slot: 15
+
+  gold:
+    display-name: "<gold>Gold"
+    material: ORANGE_WOOL
+    code: "&6"
+    permission: "solaritychat.color.gold"
+    slot: 16
+
+  pink:
+    display-name: "<#FF69B4>Pink"
+    material: PINK_DYE
+    code: "&#FF69B4"
+    permission: "solaritychat.color.pink"
+    slot: 19
+
+  orange:
+    display-name: "<#FF8C00>Orange"
+    material: ORANGE_DYE
+    code: "&#FF8C00"
+    permission: "solaritychat.color.orange"
+    slot: 20
+
+  purple:
+    display-name: "<#9B30FF>Purple"
+    material: PURPLE_DYE
+    code: "&#9B30FF"
+    permission: "solaritychat.color.purple"
+    slot: 21
+
+  cyan:
+    display-name: "<#00FFFF>Cyan"
+    material: CYAN_DYE
+    code: "&#00FFFF"
+    permission: "solaritychat.color.cyan"
+    slot: 22
+
+  gradient_fire:
+    display-name: "<gradient:gold:red>Fire Gradient</gradient>"
+    material: BLAZE_POWDER
+    code: "<gradient:gold:red>"
+    permission: "solaritychat.color.gradient.fire"
+    slot: 23
+
+  gradient_ocean:
+    display-name: "<gradient:aqua:blue>Ocean Gradient</gradient>"
+    material: PRISMARINE_SHARD
+    code: "<gradient:aqua:blue>"
+    permission: "solaritychat.color.gradient.ocean"
+    slot: 24
+
+  gradient_rainbow:
+    display-name: "<gradient:red:gold:yellow:green:blue:light_purple>Rainbow</gradient>"
+    material: NETHER_STAR
+    code: "<gradient:red:gold:yellow:green:blue:light_purple>"
+    permission: "solaritychat.color.gradient.rainbow"
+    slot: 25
+
+  rainbow:
+    display-name: "<rainbow>Rainbow Text"
+    material: ENCHANTED_GOLDEN_APPLE
+    code: "<rainbow>"
+    permission: "solaritychat.color.rainbow"
+    slot: 28
+
+gui:
+  title: "<gradient:#FFD700:#FFA500>Chat Colors</gradient>"
+  size: 54
+  reset-item:
+    material: BARRIER
+    display-name: "<red>Reset Color"
+    slot: 49

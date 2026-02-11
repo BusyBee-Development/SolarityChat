@@ -1,6 +1,6 @@
 package org.busybee.solaritychat.storage;
 
-import com.github.benmanes.caffeine.cache.AsyncLoadingCache;
+import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.busybee.solaritychat.SolarityChat;
 
@@ -10,14 +10,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ColorManager {
 
     private final SolarityChat plugin;
     private final DatabaseManager databaseManager;
-    private final AsyncLoadingCache<UUID, Optional<String>> colorCache;
+    private final LoadingCache<UUID, Optional<String>> colorCache;
 
     public ColorManager(SolarityChat plugin, DatabaseManager databaseManager) {
         this.plugin = plugin;
@@ -25,7 +24,7 @@ public class ColorManager {
         this.colorCache = Caffeine.newBuilder()
                 .maximumSize(500)
                 .expireAfterAccess(30, TimeUnit.MINUTES)
-                .buildAsync(this::loadColorFromDatabase);
+                .build(this::loadColorFromDatabase);
         createTable();
     }
 
@@ -58,9 +57,13 @@ public class ColorManager {
     }
 
     public String getPlayerColor(UUID uuid) {
-        CompletableFuture<Optional<String>> future = colorCache.get(uuid);
-        Optional<String> result = future.getNow(Optional.empty());
-        return result.orElse(null);
+        try {
+            Optional<String> result = colorCache.get(uuid);
+            return result.orElse(null);
+        } catch (Exception e) {
+            plugin.getLogger().warning("Error getting player color: " + e.getMessage());
+            return null;
+        }
     }
 
     public void preloadPlayerColor(UUID uuid) {
@@ -69,7 +72,7 @@ public class ColorManager {
 
     public void setPlayerColor(UUID uuid, String colorCode) {
         if (colorCode == null) {
-            colorCache.put(uuid, CompletableFuture.completedFuture(Optional.empty()));
+            colorCache.put(uuid, Optional.empty());
             plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
                 String query = "DELETE FROM player_colors WHERE uuid = ?";
                 try (Connection conn = databaseManager.getConnection();
@@ -83,7 +86,7 @@ public class ColorManager {
             return;
         }
 
-        colorCache.put(uuid, CompletableFuture.completedFuture(Optional.of(colorCode)));
+        colorCache.put(uuid, Optional.of(colorCode));
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             String query = "INSERT OR REPLACE INTO player_colors (uuid, color_code) VALUES (?, ?)";
             try (Connection conn = databaseManager.getConnection();
