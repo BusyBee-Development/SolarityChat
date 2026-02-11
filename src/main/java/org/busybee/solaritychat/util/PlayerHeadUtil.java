@@ -1,6 +1,6 @@
 package org.busybee.solaritychat.util;
 
-import me.clip.placeholderapi.PlaceholderAPI;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import javax.imageio.ImageIO;
@@ -24,13 +24,27 @@ public class PlayerHeadUtil {
     private static final String HEAD_PIXEL = "█";
     private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(5))
+            .followRedirects(HttpClient.Redirect.NORMAL)
             .build();
 
     public static String getSkinUrl(Player player) {
-        String urlString = PlaceholderAPI.setPlaceholders(player, "%player_skin_url%");
-        if (urlString.isEmpty() || urlString.equals("%player_skin_url%")) {
+        String urlString = null;
+        
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            try {
+                urlString = me.clip.placeholderapi.PlaceholderAPI.setPlaceholders(player, "%player_skin_url%");
+                if (urlString.equals("%player_skin_url%")) {
+                    urlString = null;
+                }
+            } catch (Exception e) {
+                urlString = null;
+            }
+        }
+        
+        if (urlString == null || urlString.isEmpty()) {
             urlString = "https://minotar.net/skin/" + player.getUniqueId();
         }
+        
         return urlString;
     }
 
