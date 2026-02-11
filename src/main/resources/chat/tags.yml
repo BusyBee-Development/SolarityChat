@@ -1,0 +1,592 @@
+gui:
+  title: "<gradient:#FFD700:#FFA500>✦ Tags</gradient>"
+  rows: 6
+  fill-empty: true
+  fill-material: GRAY_STAINED_GLASS_PANE
+
+tags:
+  crown:
+    display: "<gradient:#FFD700:#FFA500>♛</gradient>"
+    permission: "solaritychat.tag.crown"
+    item:
+      material: GOLD_INGOT
+      name: "<gradient:#FFD700:#FFA500>♛</gradient> <white>Crown Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Show off your royal status'
+        - '<gray>with this golden crown!'
+        - ''
+        - '<gray>Preview: <gradient:#FFD700:#FFA500>♛</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  phantom:
+    display: "<gradient:#8B00FF:#4B0082>ᴘʜᴀɴᴛᴏᴍ</gradient>"
+    permission: "solaritychat.tag.phantom"
+    item:
+      material: PHANTOM_MEMBRANE
+      name: "<gradient:#8B00FF:#4B0082>ᴘʜᴀɴᴛᴏᴍ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>A mysterious tag for those'
+        - '<gray>who lurk in the shadows.'
+        - ''
+        - '<gray>Preview: <gradient:#8B00FF:#4B0082>ᴘʜᴀɴᴛᴏᴍ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  inferno:
+    display: "<gradient:#FF4500:#FF0000>🔥 ɪɴꜰᴇʀɴᴏ</gradient>"
+    permission: "solaritychat.tag.inferno"
+    item:
+      material: BLAZE_POWDER
+      name: "<gradient:#FF4500:#FF0000>🔥 ɪɴꜰᴇʀɴᴏ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Burn brighter than the rest'
+        - '<gray>with this fiery tag!'
+        - ''
+        - '<gray>Preview: <gradient:#FF4500:#FF0000>🔥 ɪɴꜰᴇʀɴᴏ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  frostbite:
+    display: "<gradient:#00BFFF:#87CEEB>❄ ꜰʀᴏꜱᴛ</gradient>"
+    permission: "solaritychat.tag.frostbite"
+    item:
+      material: BLUE_ICE
+      name: "<gradient:#00BFFF:#87CEEB>❄ ꜰʀᴏꜱᴛ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Chill out with this icy tag.'
+        - ''
+        - '<gray>Preview: <gradient:#00BFFF:#87CEEB>❄ ꜰʀᴏꜱᴛ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  eclipse:
+    display: "<gradient:#1A1A2E:#E94560>☽ ᴇᴄʟɪᴘꜱᴇ</gradient>"
+    permission: "solaritychat.tag.eclipse"
+    item:
+      material: END_CRYSTAL
+      name: "<gradient:#1A1A2E:#E94560>☽ ᴇᴄʟɪᴘꜱᴇ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>A rare celestial event,'
+        - '<gray>now in tag form.'
+        - ''
+        - '<gray>Preview: <gradient:#1A1A2E:#E94560>☽ ᴇᴄʟɪᴘꜱᴇ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  venom:
+    display: "<gradient:#00FF00:#006400>☠ ᴠᴇɴᴏᴍ</gradient>"
+    permission: "solaritychat.tag.venom"
+    item:
+      material: SPIDER_EYE
+      name: "<gradient:#00FF00:#006400>☠ ᴠᴇɴᴏᴍ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Toxic and deadly. Handle'
+        - '<gray>with care.'
+        - ''
+        - '<gray>Preview: <gradient:#00FF00:#006400>☠ ᴠᴇɴᴏᴍ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  titan:
+    display: "<gradient:#C0C0C0:#808080><bold>ᴛɪᴛᴀɴ</bold></gradient>"
+    permission: "solaritychat.tag.titan"
+    item:
+      material: NETHERITE_INGOT
+      name: "<gradient:#C0C0C0:#808080><bold>ᴛɪᴛᴀɴ</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Unstoppable. Unbreakable.'
+        - '<gray>You are a Titan.'
+        - ''
+        - '<gray>Preview: <gradient:#C0C0C0:#808080><bold>ᴛɪᴛᴀɴ</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  celestial:
+    display: "<gradient:#FFD700:#FF69B4>✧ ᴄᴇʟᴇꜱᴛɪᴀʟ</gradient>"
+    permission: "solaritychat.tag.celestial"
+    item:
+      material: NETHER_STAR
+      name: "<gradient:#FFD700:#FF69B4>✧ ᴄᴇʟᴇꜱᴛɪᴀʟ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Blessed by the stars above.'
+        - ''
+        - '<gray>Preview: <gradient:#FFD700:#FF69B4>✧ ᴄᴇʟᴇꜱᴛɪᴀʟ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  warden:
+    display: "<gradient:#0D3B66:#1B998B>⛨ ᴡᴀʀᴅᴇɴ</gradient>"
+    permission: "solaritychat.tag.warden"
+    item:
+      material: SCULK_CATALYST
+      name: "<gradient:#0D3B66:#1B998B>⛨ ᴡᴀʀᴅᴇɴ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Guardian of the deep dark.'
+        - ''
+        - '<gray>Preview: <gradient:#0D3B66:#1B998B>⛨ ᴡᴀʀᴅᴇɴ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  nova:
+    display: "<gradient:#FF6B6B:#FFE66D>✦ ɴᴏᴠᴀ</gradient>"
+    permission: "solaritychat.tag.nova"
+    item:
+      material: GLOWSTONE_DUST
+      name: "<gradient:#FF6B6B:#FFE66D>✦ ɴᴏᴠᴀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Explode onto the scene'
+        - '<gray>like a supernova!'
+        - ''
+        - '<gray>Preview: <gradient:#FF6B6B:#FFE66D>✦ ɴᴏᴠᴀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  shadow:
+    display: "<gradient:#2C2C2C:#555555>⚶ ꜱʜᴀᴅᴏᴡ</gradient>"
+    permission: "solaritychat.tag.shadow"
+    item:
+      material: BLACK_DYE
+      name: "<gradient:#2C2C2C:#555555>⚶ ꜱʜᴀᴅᴏᴡ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Embrace the darkness within.'
+        - ''
+        - '<gray>Preview: <gradient:#2C2C2C:#555555>⚶ ꜱʜᴀᴅᴏᴡ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  sakura:
+    display: "<gradient:#FFB7C5:#FF69B4>❀ ꜱᴀᴋᴜʀᴀ</gradient>"
+    permission: "solaritychat.tag.sakura"
+    item:
+      material: CHERRY_SAPLING
+      name: "<gradient:#FFB7C5:#FF69B4>❀ ꜱᴀᴋᴜʀᴀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Delicate and beautiful,'
+        - '<gray>like cherry blossoms.'
+        - ''
+        - '<gray>Preview: <gradient:#FFB7C5:#FF69B4>❀ ꜱᴀᴋᴜʀᴀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  apex:
+    display: "<gradient:#FF0000:#8B0000><bold>ᴀᴘᴇx</bold></gradient>"
+    permission: "solaritychat.tag.apex"
+    item:
+      material: DIAMOND_SWORD
+      name: "<gradient:#FF0000:#8B0000><bold>ᴀᴘᴇx</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Top of the food chain.'
+        - '<gray>The ultimate predator.'
+        - ''
+        - '<gray>Preview: <gradient:#FF0000:#8B0000><bold>ᴀᴘᴇx</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  aurora:
+    display: "<gradient:#00FF87:#60EFFF>ᴀᴜʀᴏʀᴀ</gradient>"
+    permission: "solaritychat.tag.aurora"
+    item:
+      material: PRISMARINE_CRYSTALS
+      name: "<gradient:#00FF87:#60EFFF>ᴀᴜʀᴏʀᴀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Dance across the sky like'
+        - '<gray>the northern lights.'
+        - ''
+        - '<gray>Preview: <gradient:#00FF87:#60EFFF>ᴀᴜʀᴏʀᴀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  ember:
+    display: "<gradient:#FF9A00:#FF4500>✸ ᴇᴍʙᴇʀ</gradient>"
+    permission: "solaritychat.tag.ember"
+    item:
+      material: MAGMA_CREAM
+      name: "<gradient:#FF9A00:#FF4500>✸ ᴇᴍʙᴇʀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>A smoldering spark that'
+        - '<gray>never goes out.'
+        - ''
+        - '<gray>Preview: <gradient:#FF9A00:#FF4500>✸ ᴇᴍʙᴇʀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  mystic:
+    display: "<gradient:#9B59B6:#3498DB>✿ ᴍʏꜱᴛɪᴄ</gradient>"
+    permission: "solaritychat.tag.mystic"
+    item:
+      material: AMETHYST_SHARD
+      name: "<gradient:#9B59B6:#3498DB>✿ ᴍʏꜱᴛɪᴄ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Shrouded in arcane mystery.'
+        - ''
+        - '<gray>Preview: <gradient:#9B59B6:#3498DB>✿ ᴍʏꜱᴛɪᴄ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  solarity:
+    display: "<gradient:#49C4FF:#08B6FB><bold>ꜱᴏʟᴀʀɪᴛʏ</bold></gradient>"
+    permission: "solaritychat.tag.solarity"
+    item:
+      material: LIGHT_BLUE_DYE
+      name: "<gradient:#49C4FF:#08B6FB><bold>ꜱᴏʟᴀʀɪᴛʏ</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>The official SolarityMC tag.'
+        - '<gray>Show your server pride!'
+        - ''
+        - '<gray>Preview: <gradient:#49C4FF:#08B6FB><bold>ꜱᴏʟᴀʀɪᴛʏ</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  thunder:
+    display: "<gradient:#FFD700:#FFA500>⚡ ᴛʜᴜɴᴅᴇʀ</gradient>"
+    permission: "solaritychat.tag.thunder"
+    item:
+      material: LIGHTNING_ROD
+      name: "<gradient:#FFD700:#FFA500>⚡ ᴛʜᴜɴᴅᴇʀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Strike fear into your enemies'
+        - '<gray>with the power of lightning!'
+        - ''
+        - '<gray>Preview: <gradient:#FFD700:#FFA500>⚡ ᴛʜᴜɴᴅᴇʀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  void:
+    display: "<gradient:#0D0D0D:#4A0E4E>⌀ ᴠᴏɪᴅ</gradient>"
+    permission: "solaritychat.tag.void"
+    item:
+      material: OBSIDIAN
+      name: "<gradient:#0D0D0D:#4A0E4E>⌀ ᴠᴏɪᴅ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Stare into the abyss...'
+        - '<gray>and it stares back.'
+        - ''
+        - '<gray>Preview: <gradient:#0D0D0D:#4A0E4E>⌀ ᴠᴏɪᴅ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  radiant:
+    display: "<gradient:#FFFFFF:#FFD700>☀ ʀᴀᴅɪᴀɴᴛ</gradient>"
+    permission: "solaritychat.tag.radiant"
+    item:
+      material: SUNFLOWER
+      name: "<gradient:#FFFFFF:#FFD700>☀ ʀᴀᴅɪᴀɴᴛ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Shine so bright they'
+        - '<gray>need sunglasses.'
+        - ''
+        - '<gray>Preview: <gradient:#FFFFFF:#FFD700>☀ ʀᴀᴅɪᴀɴᴛ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  reaper:
+    display: "<gradient:#1C1C1C:#8B0000>☠ ʀᴇᴀᴘᴇʀ</gradient>"
+    permission: "solaritychat.tag.reaper"
+    item:
+      material: WITHER_SKELETON_SKULL
+      name: "<gradient:#1C1C1C:#8B0000>☠ ʀᴇᴀᴘᴇʀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Death comes for all.'
+        - '<gray>You just deliver it faster.'
+        - ''
+        - '<gray>Preview: <gradient:#1C1C1C:#8B0000>☠ ʀᴇᴀᴘᴇʀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  prism:
+    display: "<gradient:#FF0000:#FF7F00:#FFFF00:#00FF00:#0000FF:#8B00FF>ᴘʀɪꜱᴍ</gradient>"
+    permission: "solaritychat.tag.prism"
+    item:
+      material: PRISMARINE_SHARD
+      name: "<gradient:#FF0000:#FF7F00:#FFFF00:#00FF00:#0000FF:#8B00FF>ᴘʀɪꜱᴍ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Every color of the rainbow'
+        - '<gray>in one stunning tag.'
+        - ''
+        - '<gray>Preview: <gradient:#FF0000:#FF7F00:#FFFF00:#00FF00:#0000FF:#8B00FF>ᴘʀɪꜱᴍ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  sentinel:
+    display: "<gradient:#2E86AB:#A23B72>⛊ ꜱᴇɴᴛɪɴᴇʟ</gradient>"
+    permission: "solaritychat.tag.sentinel"
+    item:
+      material: SHIELD
+      name: "<gradient:#2E86AB:#A23B72>⛊ ꜱᴇɴᴛɪɴᴇʟ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Ever watchful. Ever vigilant.'
+        - ''
+        - '<gray>Preview: <gradient:#2E86AB:#A23B72>⛊ ꜱᴇɴᴛɪɴᴇʟ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  zenith:
+    display: "<gradient:#E8D5B7:#B8860B><bold>ᴢᴇɴɪᴛʜ</bold></gradient>"
+    permission: "solaritychat.tag.zenith"
+    item:
+      material: GOLD_BLOCK
+      name: "<gradient:#E8D5B7:#B8860B><bold>ᴢᴇɴɪᴛʜ</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>The absolute peak.'
+        - '<gray>There is nowhere higher.'
+        - ''
+        - '<gray>Preview: <gradient:#E8D5B7:#B8860B><bold>ᴢᴇɴɪᴛʜ</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  lotus:
+    display: "<gradient:#FF6FD8:#3813C2>❁ ʟᴏᴛᴜꜱ</gradient>"
+    permission: "solaritychat.tag.lotus"
+    item:
+      material: LILY_PAD
+      name: "<gradient:#FF6FD8:#3813C2>❁ ʟᴏᴛᴜꜱ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Beauty that rises from'
+        - '<gray>the murkiest waters.'
+        - ''
+        - '<gray>Preview: <gradient:#FF6FD8:#3813C2>❁ ʟᴏᴛᴜꜱ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  catalyst:
+    display: "<gradient:#00D2FF:#3A7BD5>⚗ ᴄᴀᴛᴀʟʏꜱᴛ</gradient>"
+    permission: "solaritychat.tag.catalyst"
+    item:
+      material: BREWING_STAND
+      name: "<gradient:#00D2FF:#3A7BD5>⚗ ᴄᴀᴛᴀʟʏꜱᴛ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>The spark that starts'
+        - '<gray>the chain reaction.'
+        - ''
+        - '<gray>Preview: <gradient:#00D2FF:#3A7BD5>⚗ ᴄᴀᴛᴀʟʏꜱᴛ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  og:
+    display: "<gradient:#0EFF00:#006600><bold>OG</bold></gradient>"
+    permission: "solaritychat.tag.og"
+    item:
+      material: CAKE
+      name: "<gradient:#0EFF00:#006600><bold>OG</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Been here since day one.'
+        - '<gray>A true original.'
+        - ''
+        - '<gray>Preview: <gradient:#0EFF00:#006600><bold>OG</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  grinder:
+    display: "<gradient:#DD6315:#8B4513>⛏ ɢʀɪɴᴅᴇʀ</gradient>"
+    permission: "solaritychat.tag.grinder"
+    item:
+      material: DIAMOND_PICKAXE
+      name: "<gradient:#DD6315:#8B4513>⛏ ɢʀɪɴᴅᴇʀ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>No rest. No breaks.'
+        - '<gray>Just pure grind.'
+        - ''
+        - '<gray>Preview: <gradient:#DD6315:#8B4513>⛏ ɢʀɪɴᴅᴇʀ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  legend:
+    display: "<gradient:#FFD700:#FF4500><bold>ʟᴇɢᴇɴᴅ</bold></gradient>"
+    permission: "solaritychat.tag.legend"
+    item:
+      material: TOTEM_OF_UNDYING
+      name: "<gradient:#FFD700:#FF4500><bold>ʟᴇɢᴇɴᴅ</bold></gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Stories will be told'
+        - '<gray>about you for ages.'
+        - ''
+        - '<gray>Preview: <gradient:#FFD700:#FF4500><bold>ʟᴇɢᴇɴᴅ</bold></gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  toxic:
+    display: "<gradient:#57DD2F:#2ECC71>⚠ ᴛᴏxɪᴄ</gradient>"
+    permission: "solaritychat.tag.toxic"
+    item:
+      material: SLIME_BALL
+      name: "<gradient:#57DD2F:#2ECC71>⚠ ᴛᴏxɪᴄ</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Wear it with pride...'
+        - '<gray>or shame. Your call.'
+        - ''
+        - '<gray>Preview: <gradient:#57DD2F:#2ECC71>⚠ ᴛᴏxɪᴄ</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  java-tag:
+    display: "<dark_gray>[<green>Java</green>]</dark_gray>"
+    permission: "solaritychat.tag.java"
+    item:
+      material: WRITABLE_BOOK
+      name: "<dark_gray>[<green>Java</green>]</dark_gray> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Free tag to show what'
+        - '<gray>platform you play on.'
+        - ''
+        - '<gray>Preview: <dark_gray>[<green>Java</green>]</dark_gray>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  bedrock-tag:
+    display: "<dark_gray>[<green>Bedrock</green>]</dark_gray>"
+    permission: "solaritychat.tag.bedrock"
+    item:
+      material: BEDROCK
+      name: "<dark_gray>[<green>Bedrock</green>]</dark_gray> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Free tag to show what'
+        - '<gray>platform you play on.'
+        - ''
+        - '<gray>Preview: <dark_gray>[<green>Bedrock</green>]</dark_gray>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  season1:
+    display: "<gradient:#C0C0C0:#A0A0A0>S1</gradient>"
+    permission: "solaritychat.tag.season1"
+    item:
+      material: IRON_INGOT
+      name: "<gradient:#C0C0C0:#A0A0A0>S1</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Awarded to Season 1 players.'
+        - ''
+        - '<gray>Preview: <gradient:#C0C0C0:#A0A0A0>S1</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  season2:
+    display: "<gradient:#E5E5E5:#C0C0C0>S2</gradient>"
+    permission: "solaritychat.tag.season2"
+    item:
+      material: GOLD_INGOT
+      name: "<gradient:#E5E5E5:#C0C0C0>S2</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Awarded to Season 2 players.'
+        - ''
+        - '<gray>Preview: <gradient:#E5E5E5:#C0C0C0>S2</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'
+
+  season3:
+    display: "<gradient:#B0E0E6:#87CEEB>S3</gradient>"
+    permission: "solaritychat.tag.season3"
+    item:
+      material: DIAMOND
+      name: "<gradient:#B0E0E6:#87CEEB>S3</gradient> <white>Tag"
+      lore:
+        - '<dark_gray>Player Tags'
+        - ''
+        - '<gold>What is this?'
+        - '<gray>Awarded to Season 3 players.'
+        - ''
+        - '<gray>Preview: <gradient:#B0E0E6:#87CEEB>S3</gradient>'
+        - ''
+        - '<gold>➥ <bold><underlined>CLICK</underlined></bold> <gold>to Select'

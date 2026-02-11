@@ -1,0 +1,33 @@
+# SolarityChat Channels Configuration
+# You can define as many channels as you want.
+
+default-channel: "global"
+
+channels:
+  global:
+    name: "Global"
+    prefix: "<dark_gray>[<gradient:#49C4FF:#08B6FB>G</gradient>]</dark_gray>"
+    permission: ""
+    radius: -1
+    auto-join: true
+  
+  local:
+    name: "Local"
+    prefix: "<dark_gray>[<gradient:#FFD700:#FFA500>L</gradient>]</dark_gray>"
+    permission: ""
+    radius: 100
+    auto-join: true
+  
+  staff:
+    name: "Staff"
+    prefix: "<dark_gray>[<red>Staff</red>]</dark_gray>"
+    permission: "solaritychat.channel.staff"
+    radius: -1
+    auto-join: false
+
+  admin:
+    name: "Admin"
+    prefix: "<dark_gray>[<dark_red>Admin</dark_red>]</dark_gray>"
+    permission: "solaritychat.channel.admin"
+    radius: -1
+    auto-join: false
