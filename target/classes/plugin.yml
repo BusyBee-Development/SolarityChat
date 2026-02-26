@@ -1,5 +1,5 @@
 name: SolarityChat
-version: '${project.version}'
+version: '2026.2'
 main: org.busybee.solaritychat.SolarityChat
 api-version: '1.20'
 softdepend: [PlaceholderAPI, LuckPerms, Vault, VaultUnlocked]

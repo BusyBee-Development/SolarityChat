@@ -1,0 +1,28 @@
+chat:
+  cooldown: 0
+
+  mention:
+    enabled: true
+    char: ""
+    replacement: "<yellow>@%player_name%</yellow>"
+    sound:
+      name: "BLOCK_NOTE_BLOCK_PLING"
+      volume: 1.0
+      pitch: 1.0
+
+discord:
+  webhook-url: ""
+  embed:
+    title: "%action_type%"
+    color: "#3498db"
+    description: "%player% has been %action_verb% because they said `%message%`"
+    footer: "If this is false, un%action_verb% them."
+    timestamp-format: "M/d/yy, h:mm a"
+
+grammar:
+  auto-capitalize: true
+  auto-punctuate: true
+  min-length: 5
+
+warnings:
+  persistent: true
