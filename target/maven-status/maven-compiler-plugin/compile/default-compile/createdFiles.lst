@@ -29,6 +29,7 @@ org\busybee\solaritychat\filter\filters\SpamRepetitionFilter$MessageRecord.class
 org\busybee\solaritychat\storage\WarningManager.class
 org\busybee\solaritychat\util\FuzzyMatcher.class
 org\busybee\solaritychat\commands\ChannelCommand.class
+org\busybee\solaritychat\storage\ColorDefinition.class
 org\busybee\solaritychat\util\ConfigManager.class
 org\busybee\solaritychat\channels\ChannelManager$ChatChannel.class
 org\busybee\solaritychat\filter\filters\CapsFilter.class

@@ -37,18 +37,15 @@ public class BlockedWordsFilter extends ChatFilter {
         String[] words = messageLower.split("\\s+");
         String[] normalizedWords = normalizedMessage.split("(?<=\\G.{4})"); // Split into chunks for fuzzy check
 
-        // 1. Check every blocked word
         for (int i = 0; i < blockedWords.size(); i++) {
             String blockedWord = blockedWords.get(i).toLowerCase();
             String normalizedBlocked = normalizedBlockedWords.get(i);
 
-            // Exact or Contains check
             if (messageLower.contains(blockedWord) || (useSmartFilter && normalizedMessage.contains(normalizedBlocked))) {
                 executeActions(player, message);
                 return true;
             }
 
-            // Fuzzy check (compares individual words in the message)
             if (useFuzzyMatching) {
                 for (String word : words) {
                     if (FuzzyMatcher.isSimilar(word, blockedWord, fuzzyThreshold)) {
@@ -56,8 +53,7 @@ public class BlockedWordsFilter extends ChatFilter {
                         return true;
                     }
                 }
-                
-                // Also check normalized chunks
+
                 if (normalizedBlocked.length() >= 4) {
                     for (int j = 0; j <= normalizedMessage.length() - normalizedBlocked.length(); j++) {
                         String sub = normalizedMessage.substring(j, j + normalizedBlocked.length());

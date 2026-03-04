@@ -32,8 +32,8 @@ public class DatabaseManager {
             config.setPoolName("SolarityChatPool");
             config.setMaximumPoolSize(1);
             config.setMinimumIdle(1);
-            config.setMaxLifetime(1800000); // 30 minutes
-            config.setKeepaliveTime(0); // Disabled by default, but explicit to avoid warnings
+            config.setMaxLifetime(1800000);
+            config.setKeepaliveTime(0);
             config.setConnectionTestQuery("SELECT 1");
             config.addDataSourceProperty("journal_mode", "WAL");
             config.addDataSourceProperty("synchronous", "NORMAL");

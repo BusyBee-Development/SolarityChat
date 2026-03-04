@@ -117,8 +117,8 @@ public final class SolarityChat extends JavaPlugin {
         announcementManager.reload();
         grammarManager.loadConfig();
         channelManager.loadChannels();
-        if (colorCommand != null) {
-            colorCommand.loadColorConfig();
+        if (colorManager != null) {
+            colorManager.loadDefinitions();
         }
     }
 

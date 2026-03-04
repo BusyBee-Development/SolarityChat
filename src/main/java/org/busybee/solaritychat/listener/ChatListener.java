@@ -131,26 +131,48 @@ public class ChatListener implements Listener {
         FormatManager.ChatFormat format = plugin.getFormatManager().getFormat(player);
         if (format == null) return;
 
-        String customColor = plugin.getColorManager().getPlayerColor(player.getUniqueId());
-        Component message;
-
-        if (customColor != null) {
-            String sanitized = sanitizeUserInput(plainMessage);
-            if (customColor.startsWith("&#") && customColor.length() >= 8) {
-                String hex = customColor.substring(1);
-                message = miniMessage.deserialize("<color:" + hex + ">" + sanitized);
-            } else if (customColor.startsWith("&") || customColor.startsWith("§")) {
-                String miniColor = MessageUtil.legacyToMini(customColor);
-                message = miniMessage.deserialize(miniColor + sanitized);
-            } else if (customColor.startsWith("<")) {
-                message = miniMessage.deserialize(customColor + sanitized);
-            } else if (customColor.startsWith("#")) {
-                message = miniMessage.deserialize("<color:" + customColor + ">" + sanitized);
-            } else {
-                message = Component.text(plainMessage);
+        String colorId = plugin.getColorManager().getPlayerColorId(player.getUniqueId());
+        String customColor = null;
+        if (colorId != null) {
+            var def = plugin.getColorManager().getColorDefinition(colorId);
+            if (def != null && player.hasPermission(def.permission())) {
+                customColor = def.code();
             }
+        }
+
+        boolean allowColor = config.getBoolean("formatting.allow-color-codes", true);
+        String colorPerm = config.getString("formatting.color-permissions.require-permission", "solaritychat.format.color");
+
+        String processedMessage = plainMessage;
+        if (!player.hasPermission("solaritychat.format.minimessage")) {
+            processedMessage = sanitizeUserInput(processedMessage);
+        }
+
+        if (allowColor && player.hasPermission(colorPerm)) {
+            processedMessage = MessageUtil.legacyToMini(processedMessage);
+        }
+
+        Component message;
+        if (customColor != null) {
+            String colorPrefix = "";
+            String colorSuffix = "";
+
+            if (customColor.startsWith("&#") && customColor.length() >= 8) {
+                colorPrefix = "<color:#" + customColor.substring(2) + ">";
+            } else if (customColor.startsWith("&") || customColor.startsWith("§")) {
+                colorPrefix = MessageUtil.legacyToMini(customColor);
+            } else if (customColor.startsWith("<")) {
+                colorPrefix = customColor;
+                if (customColor.contains("gradient") || customColor.contains("rainbow")) {
+                    if (customColor.contains("gradient")) colorSuffix = "</gradient>";
+                    if (customColor.contains("rainbow")) colorSuffix = "</rainbow>";
+                }
+            } else if (customColor.startsWith("#")) {
+                colorPrefix = "<color:" + customColor + ">";
+            }
+            message = miniMessage.deserialize(colorPrefix + processedMessage + colorSuffix);
         } else {
-            message = Component.text(plainMessage);
+            message = miniMessage.deserialize(processedMessage);
         }
 
         final Component finalMessage = message;

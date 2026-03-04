@@ -48,7 +48,6 @@ public class VaultIntegration {
     public boolean isEnabled() {
         return enabled;
     }
-
     public boolean hasEconomy() {
         return economy != null;
     }

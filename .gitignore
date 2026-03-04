@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# Local libraries
+lib/
+
+# Java related ignores
+java/
+*.class
+
+# IDE - IntelliJ IDEA
+.idea/
+*.iml
+out/

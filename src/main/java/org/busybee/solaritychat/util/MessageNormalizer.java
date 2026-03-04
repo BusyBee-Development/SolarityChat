@@ -23,13 +23,6 @@ public class MessageNormalizer {
         LEET_MAP.put('v', 'u');
     }
 
-    /**
-     * Normalizes a message by:
-     * 1. Converting to lowercase
-     * 2. Replacing leetspeak characters
-     * 3. Removing non-alphanumeric characters (dots, spaces, etc.)
-     * 4. Reducing repeated characters (helloooo -> hello)
-     */
     public static String normalize(String message) {
         if (message == null) return "";
 
@@ -38,13 +31,10 @@ public class MessageNormalizer {
 
         for (int i = 0; i < lower.length(); i++) {
             char c = lower.charAt(i);
-            
-            // Replace leet
+
             c = LEET_MAP.getOrDefault(c, c);
 
-            // Only keep alphanumeric
             if (Character.isLetterOrDigit(c)) {
-                // Reduce repetitions (max 2 of the same char in a row)
                 if (normalized.length() >= 2 && 
                     normalized.charAt(normalized.length() - 1) == c && 
                     normalized.charAt(normalized.length() - 2) == c) {

@@ -93,10 +93,12 @@ public class ChatFormatter {
         if (plugin.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
             text = PlaceholderAPI.setPlaceholders(player, text);
         }
+        String color = plugin.getColorManager().getPlayerColorCode(player.getUniqueId());
         text = text.replace("%player%", player.getName())
                    .replace("%player_name%", player.getName())
                    .replace("%displayname%", player.getName())
-                   .replace("%tag%", tag);
+                   .replace("%tag%", tag)
+                   .replace("%color%", color != null ? color : "");
         return text;
     }
 

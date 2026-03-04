@@ -105,7 +105,6 @@ public class TagManager {
     public ConfigurationSection getTagsSection() {
         return tagsConfig.getConfigurationSection("tags");
     }
-
     public FileConfiguration getTagsConfig() {
         return tagsConfig;
     }

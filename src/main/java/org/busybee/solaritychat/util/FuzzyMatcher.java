@@ -2,11 +2,6 @@ package org.busybee.solaritychat.util;
 
 public class FuzzyMatcher {
 
-    /**
-     * Calculates the Levenshtein distance between two strings.
-     * The distance is the number of insertions, deletions, or substitutions 
-     * required to change one string into another.
-     */
     public static int getLevenshteinDistance(String s1, String s2) {
         int[] prev = new int[s2.length() + 1];
         for (int j = 0; j <= s2.length(); j++) {
@@ -26,10 +21,6 @@ public class FuzzyMatcher {
         return prev[s2.length()];
     }
 
-    /**
-     * Checks if two strings are similar based on a threshold (0.0 to 1.0).
-     * 1.0 means identical, 0.0 means completely different.
-     */
     public static boolean isSimilar(String s1, String s2, double threshold) {
         if (s1.isEmpty() || s2.isEmpty()) return false;
         if (s1.equals(s2)) return true;

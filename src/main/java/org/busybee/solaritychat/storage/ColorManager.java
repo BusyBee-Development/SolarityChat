@@ -3,13 +3,15 @@ package org.busybee.solaritychat.storage;
 import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import org.busybee.solaritychat.SolarityChat;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.YamlConfiguration;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ColorManager {
@@ -17,6 +19,7 @@ public class ColorManager {
     private final SolarityChat plugin;
     private final DatabaseManager databaseManager;
     private final LoadingCache<UUID, Optional<String>> colorCache;
+    private final Map<String, ColorDefinition> colorDefinitions = new LinkedHashMap<>();
 
     public ColorManager(SolarityChat plugin, DatabaseManager databaseManager) {
         this.plugin = plugin;
@@ -26,6 +29,37 @@ public class ColorManager {
                 .expireAfterAccess(30, TimeUnit.MINUTES)
                 .build(this::loadColorFromDatabase);
         createTable();
+        loadDefinitions();
+    }
+
+    public void loadDefinitions() {
+        colorDefinitions.clear();
+        File colorFile = new File(plugin.getDataFolder(), "chat" + File.separator + "colors.yml");
+        if (!colorFile.exists()) return;
+
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(colorFile);
+        ConfigurationSection section = config.getConfigurationSection("colors");
+        if (section == null) return;
+
+        for (String key : section.getKeys(false)) {
+            ConfigurationSection colorSection = section.getConfigurationSection(key);
+            if (colorSection == null) continue;
+
+            String displayName = colorSection.getString("display-name", key);
+            String material = colorSection.getString("material", "WHITE_WOOL");
+            String code = colorSection.getString("code", "");
+            String permission = colorSection.getString("permission", "solaritychat.color." + key);
+
+            colorDefinitions.put(key, new ColorDefinition(key, displayName, material, code, permission));
+        }
+    }
+
+    public Map<String, ColorDefinition> getColorDefinitions() {
+        return Collections.unmodifiableMap(colorDefinitions);
+    }
+
+    public ColorDefinition getColorDefinition(String id) {
+        return colorDefinitions.get(id);
     }
 
     private void createTable() {
@@ -56,7 +90,7 @@ public class ColorManager {
         return Optional.empty();
     }
 
-    public String getPlayerColor(UUID uuid) {
+    public String getPlayerColorId(UUID uuid) {
         try {
             Optional<String> result = colorCache.get(uuid);
             return result.orElse(null);
@@ -64,6 +98,22 @@ public class ColorManager {
             plugin.getLogger().warning("Error getting player color: " + e.getMessage());
             return null;
         }
+    }
+
+    public String getPlayerColorCode(UUID uuid) {
+        String id = getPlayerColorId(uuid);
+        if (id == null) return null;
+        ColorDefinition def = getColorDefinition(id);
+        if (def != null) return def.code();
+        if (id.startsWith("&") || id.startsWith("§") || id.startsWith("<") || id.startsWith("#")) {
+            return id;
+        }
+        return null;
+    }
+
+    @Deprecated
+    public String getPlayerColor(UUID uuid) {
+        return getPlayerColorCode(uuid);
     }
 
     public void preloadPlayerColor(UUID uuid) {

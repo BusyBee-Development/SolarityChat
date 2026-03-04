@@ -8,12 +8,14 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 - **Custom Chat Formats**: Fully customizable chat format with prefix, name, suffix, and message components
 - **Interactive Hover Text**: Display player statistics, balance, and playtime on hover
 - **Click Actions**: Click player names to view stats or execute commands
-- **Color & Formatting Support**: RGB hex colors, legacy color codes, and text formatting (bold, italic, underline, strikethrough, magic)
+- **Color & Formatting Support**: RGB hex colors, legacy color codes, and native MiniMessage support (gradients, rainbows)
+- **Chat Colors GUI**: Interactive paginated menu for selecting chat colors and gradients
 - **Permission-Based Formatting**: Control who can use colors and formatting codes
-- **PlaceholderAPI Integration**: Full support for PAPI placeholders in chat formats
+- **PlaceholderAPI Integration**: Full support for PAPI placeholders in chat formats, tags, and colors
 - **LuckPerms Integration**: Display ranks, prefixes, and suffixes from LuckPerms
 - **Vault Integration**: Show economy balance in hover text
 - **Tag System**: Custom player tags with GUI selection
+- **Chat Channels**: Multi-channel support (Global, Staff, Local) with easy switching
 
 ### Chat Filtering
 - **Multiple Filter Types**:
@@ -69,13 +71,17 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 |---------|---------|-------------|------------|
 | `/solaritychat` | `/schat` | Main plugin command | - |
 | `/solaritychat reload` | - | Reload configuration files | `solaritychat.reload` |
-| `/solaritychat test <message>` | - | Test message against filters | `solaritychat.test` |
-| `/solaritychat toggle-alerts` | - | Toggle staff filter alerts | `solaritychat.toggle-alerts` |
-| `/solaritychat warnings <player>` | - | View player warnings | `solaritychat.warnings.view` |
-| `/solaritychat setwarnings <player> <amount>` | - | Set player warnings | `solaritychat.warnings.manage` |
-| `/solaritychat clearwarnings <player>` | - | Clear player warnings | `solaritychat.warnings.manage` |
+| `/solaritychat test <msg>` | - | Test message against filters | `solaritychat.test` |
+| `/solaritychat toggle-alerts`| - | Toggle staff filter alerts | `solaritychat.toggle-alerts` |
+| `/solaritychat warnings <p>` | - | View player warnings | `solaritychat.warnings.view` |
+| `/solaritychat setwarnings <p> <n>` | - | Set player warnings | `solaritychat.warnings.manage` |
+| `/solaritychat clearwarnings <p>` | - | Clear player warnings | `solaritychat.warnings.manage` |
 | `/tags` | `/sctags` | Open tag selection GUI | `solaritychat.tags` |
-| `/clearchat` | - | Clear chat for all players | `solaritychat.clearchat` |
+| `/colors` | `/chatcolors` | Open chat color selection GUI | `solaritychat.colors` |
+| `/channel <name>` | `/ch` | Switch chat channels | `solaritychat.channel.<name>` |
+| `/msg <p> <msg>` | `/whisper` | Send a private message | - |
+| `/reply <msg>` | `/r` | Reply to last private message | - |
+| `/clearchat` | `/cc` | Clear chat for all players | `solaritychat.clearchat` |
 
 ## Permissions
 
@@ -95,10 +101,28 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 - `solaritychat.format.underline` - Use underline formatting
 - `solaritychat.format.strikethrough` - Use strikethrough formatting
 - `solaritychat.format.magic` - Use magic/obfuscated formatting
+- `solaritychat.format.minimessage` - Use raw MiniMessage tags in chat
 
 ### Player Permissions
 - `solaritychat.tags` - Access tag commands
 - `solaritychat.tags.use` - Use the tag system
+- `solaritychat.colors` - Access the /colors command
+- `solaritychat.color.<id>` - Access to a specific color definition
+- `solaritychat.color.*` - Access to all colors
+- `solaritychat.channel.<name>` - Access to join a specific channel
+
+## PlaceholderAPI Integration
+
+| Placeholder | Description |
+|-------------|-------------|
+| `%solaritychat_tag%` | Player's equipped tag display name |
+| `%solaritychat_warnings%` | Player's total warnings |
+| `%solaritychat_color%` | Player's selected color code |
+| `%solaritychat_color_id%` | Player's selected color ID |
+| `%solaritychat_color_display%` | Player's selected color display name |
+| `%solaritychat_vault_balance%` | Player's economy balance |
+| `%solaritychat_vault_prefix%` | Player's Vault/LuckPerms prefix |
+| `%solaritychat_vault_suffix%` | Player's Vault/LuckPerms suffix |
 
 ## Configuration
 
@@ -131,8 +155,11 @@ Define custom chat formats with hover text and click actions. Supports multiple 
 ### Filters (`chat/filters.yml`)
 Configure all chat filters including blocked words, regex patterns, spam detection, and actions to take when triggered.
 
-### Announcements (`chat/announcements.yml`)
-Set up automated announcements with customizable intervals, order, and formatting.
+### Chat Colors (`chat/colors.yml`)
+Configure the colors GUI layout, item templates, and define unlimited custom colors, gradients, and rainbows using MiniMessage format.
+
+### Chat Channels (`chat/channels.yml`)
+Define chat channels with custom formats, ranges (local chat), and join/leave permissions.
 
 ### Messages (`messages.yml`)
 Customize all plugin messages and notifications.
@@ -191,6 +218,24 @@ slurs:
 ## Tag System
 
 Players can select custom tags that appear in chat after their name. Tags are configured per-player and persist across restarts. Use `/tags` to open the selection GUI.
+
+## Chat Color System
+
+The plugin features a robust, ID-based chat color system. Admins can define colors in `colors.yml` using modern MiniMessage tags.
+
+- **Live Previews**: Players see a preview of how their text will look directly in the GUI.
+- **State-Aware GUI**: The menu automatically shows which colors are locked, available, or currently selected.
+- **Admin-Friendly**: If you change a color's code in the config, it updates for all players who have it selected without them needing to re-open the menu.
+- **Pagination**: Supports infinite colors with automatic pagination.
+
+## Chat Channels
+
+SolarityChat supports multiple chat channels. By default, it includes:
+- **Global**: Default channel for all players.
+- **Staff**: Private channel for staff members (`solaritychat.channel.staff`).
+- **Local**: Range-based chat for players near each other.
+
+Use `/channel <name>` to switch your active channel.
 
 ## Support
 

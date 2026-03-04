@@ -1,9 +1,13 @@
 package org.busybee.solaritychat.listeners;
 
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import org.bukkit.NamespacedKey;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.busybee.solaritychat.SolarityChat;
+import org.busybee.solaritychat.commands.ColorCommand;
+import org.busybee.solaritychat.storage.ColorDefinition;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,8 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.List;
 
 public class ColorGUIListener implements Listener {
 
@@ -37,29 +39,42 @@ public class ColorGUIListener implements Listener {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
-        List<Component> lore = meta.lore();
-        if (lore == null || lore.size() < 3) return;
+        PersistentDataContainer data = meta.getPersistentDataContainer();
 
-        String codeLine = PlainTextComponentSerializer.plainText().serialize(lore.get(1));
-        String colorCode = codeLine.replace("Code: ", "").trim();
+        NamespacedKey pageKey = new NamespacedKey(plugin, "gui_page");
+        if (data.has(pageKey, PersistentDataType.INTEGER)) {
+            Integer targetPage = data.get(pageKey, PersistentDataType.INTEGER);
+            if (targetPage != null && plugin.getCommand("colors").getExecutor() instanceof ColorCommand colorCommand) {
+                colorCommand.openColorGUI(player, targetPage);
+            }
+            return;
+        }
 
-        String permLine = PlainTextComponentSerializer.plainText().serialize(lore.get(2));
-        String permission = permLine.replace("Permission: ", "").trim();
+        NamespacedKey actionKey = new NamespacedKey(plugin, "gui_action");
+        if (data.has(actionKey, PersistentDataType.STRING)) {
+            String action = data.get(actionKey, PersistentDataType.STRING);
+            if ("reset".equalsIgnoreCase(action)) {
+                plugin.getColorManager().setPlayerColor(player.getUniqueId(), null);
+                player.sendMessage(mm.deserialize("<green>Your chat color has been reset!"));
+                player.closeInventory();
+            }
+            return;
+        }
 
-        if (!player.hasPermission(permission)) {
+        NamespacedKey colorIdKey = new NamespacedKey(plugin, "color_id");
+        String colorId = data.get(colorIdKey, PersistentDataType.STRING);
+
+        if (colorId == null) return;
+
+        ColorDefinition def = plugin.getColorManager().getColorDefinition(colorId);
+        if (def == null) return;
+
+        if (!player.hasPermission(def.permission())) {
             player.sendMessage(mm.deserialize("<red>You don't have permission for this color."));
-            player.closeInventory();
             return;
         }
 
-        if (colorCode.equalsIgnoreCase("reset")) {
-            plugin.getColorManager().setPlayerColor(player.getUniqueId(), null);
-            player.sendMessage(mm.deserialize("<green>Your chat color has been reset!"));
-            player.closeInventory();
-            return;
-        }
-
-        plugin.getColorManager().setPlayerColor(player.getUniqueId(), colorCode);
+        plugin.getColorManager().setPlayerColor(player.getUniqueId(), colorId);
         player.sendMessage(mm.deserialize("<green>Chat color updated!"));
         player.closeInventory();
     }

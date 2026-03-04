@@ -2,7 +2,6 @@ package org.busybee.solaritychat.util;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -29,23 +28,18 @@ public class DiscordWebhook {
     public DiscordWebhook(String url) {
         this.url = url;
     }
-
     public void setContent(String content) {
         this.content = content;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
-
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
     }
-
     public void setTts(boolean tts) {
         this.tts = tts;
     }
-
     public void addEmbed(EmbedObject embed) {
         this.embeds.add(embed);
     }

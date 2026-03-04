@@ -2,7 +2,6 @@ package org.busybee.solaritychat.util;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
 public class MessageUtil {
@@ -33,6 +32,16 @@ public class MessageUtil {
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == '&' && i + 1 < chars.length) {
                 char code = chars[i + 1];
+
+                if (code == '#' && i + 7 < chars.length) {
+                    String hex = text.substring(i + 2, i + 8);
+                    if (hex.matches("[0-9a-fA-F]{6}")) {
+                        result.append("<color:#").append(hex).append(">");
+                        i += 7;
+                        continue;
+                    }
+                }
+
                 if (code == 'x' && i + 13 < chars.length) {
                     StringBuilder hex = new StringBuilder("#");
                     boolean valid = true;
@@ -51,7 +60,8 @@ public class MessageUtil {
                         continue;
                     }
                 }
-                String mini = switch (code) {
+
+                String mini = switch (Character.toLowerCase(code)) {
                     case '0' -> "<black>";
                     case '1' -> "<dark_blue>";
                     case '2' -> "<dark_green>";
@@ -62,18 +72,18 @@ public class MessageUtil {
                     case '7' -> "<gray>";
                     case '8' -> "<dark_gray>";
                     case '9' -> "<blue>";
-                    case 'a', 'A' -> "<green>";
-                    case 'b', 'B' -> "<aqua>";
-                    case 'c', 'C' -> "<red>";
-                    case 'd', 'D' -> "<light_purple>";
-                    case 'e', 'E' -> "<yellow>";
-                    case 'f', 'F' -> "<white>";
-                    case 'k', 'K' -> "<obfuscated>";
-                    case 'l', 'L' -> "<bold>";
-                    case 'm', 'M' -> "<strikethrough>";
-                    case 'n', 'N' -> "<underlined>";
-                    case 'o', 'O' -> "<italic>";
-                    case 'r', 'R' -> "<reset>";
+                    case 'a' -> "<green>";
+                    case 'b' -> "<aqua>";
+                    case 'c' -> "<red>";
+                    case 'd' -> "<light_purple>";
+                    case 'e' -> "<yellow>";
+                    case 'f' -> "<white>";
+                    case 'k' -> "<obfuscated>";
+                    case 'l' -> "<bold>";
+                    case 'm' -> "<strikethrough>";
+                    case 'n' -> "<underlined>";
+                    case 'o' -> "<italic>";
+                    case 'r' -> "<reset>";
                     default -> null;
                 };
                 if (mini != null) {

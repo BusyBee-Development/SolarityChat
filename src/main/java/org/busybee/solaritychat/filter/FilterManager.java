@@ -97,15 +97,12 @@ public class FilterManager {
         public boolean isTriggered() {
             return triggered;
         }
-
         public String getFilterName() {
             return filterName;
         }
-
         public List<String> getActions() {
             return actions;
         }
-
         public String getMessage() {
             return message;
         }

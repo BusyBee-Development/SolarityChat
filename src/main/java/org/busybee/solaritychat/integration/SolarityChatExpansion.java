@@ -51,6 +51,25 @@ public class SolarityChatExpansion extends PlaceholderExpansion {
             return String.valueOf(plugin.getWarningManager().getWarnings(player.getUniqueId()));
         }
 
+        if (params.equalsIgnoreCase("color") || params.equalsIgnoreCase("color_code")) {
+            String color = plugin.getColorManager().getPlayerColorCode(player.getUniqueId());
+            return color != null ? color : "";
+        }
+
+        if (params.equalsIgnoreCase("color_id")) {
+            String id = plugin.getColorManager().getPlayerColorId(player.getUniqueId());
+            return id != null ? id : "";
+        }
+
+        if (params.equalsIgnoreCase("color_display")) {
+            String id = plugin.getColorManager().getPlayerColorId(player.getUniqueId());
+            if (id != null) {
+                var def = plugin.getColorManager().getColorDefinition(id);
+                return def != null ? def.displayName() : "";
+            }
+            return "";
+        }
+
         if (params.startsWith("vault_")) {
             return handleVaultPlaceholder(player, params.substring(6));
         }
