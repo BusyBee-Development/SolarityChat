@@ -56,9 +56,21 @@ public class DatabaseManager {
                 "last_updated INTEGER DEFAULT 0" +
                 ")";
 
+        String createColorsTable = "CREATE TABLE IF NOT EXISTS player_colors (" +
+                "uuid TEXT PRIMARY KEY," +
+                "color_code TEXT NOT NULL" +
+                ")";
+
+        String createTagsTable = "CREATE TABLE IF NOT EXISTS player_tags (" +
+                "uuid TEXT PRIMARY KEY," +
+                "tag_id TEXT NOT NULL" +
+                ")";
+
         try (Connection conn = dataSource.getConnection();
              Statement stmt = conn.createStatement()) {
             stmt.execute(createWarningsTable);
+            stmt.execute(createColorsTable);
+            stmt.execute(createTagsTable);
             stmt.execute("PRAGMA journal_mode=WAL");
         } catch (SQLException e) {
             plugin.getLogger().severe("Could not create tables: " + e.getMessage());

@@ -59,7 +59,7 @@ public final class SolarityChat extends JavaPlugin {
         filterManager = new FilterManager(this);
         formatManager = new FormatManager(this);
         chatFormatter = new ChatFormatter(this);
-        tagManager = new TagManager(this);
+        tagManager = new TagManager(this, databaseManager);
         tagGUI = new TagGUI(this, tagManager, configManager);
         announcementManager = new AnnouncementManager(this);
         grammarManager = new GrammarManager(this);

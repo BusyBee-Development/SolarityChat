@@ -91,7 +91,7 @@ grammar:
 channels:
   # Whether the channel system is enabled.
   # If disabled, channel prefixes and commands will be inactive.
-  enabled: true
+  enabled: false
 
 # ------------------------------------------------------
 # Warning System

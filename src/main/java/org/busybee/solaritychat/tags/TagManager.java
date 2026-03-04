@@ -1,6 +1,7 @@
 package org.busybee.solaritychat.tags;
 
 import org.busybee.solaritychat.SolarityChat;
+import org.busybee.solaritychat.storage.DatabaseManager;
 import org.busybee.solaritychat.util.MessageUtil;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -8,7 +9,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import java.io.File;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -16,14 +20,14 @@ import java.util.UUID;
 public class TagManager {
 
     private final SolarityChat plugin;
+    private final DatabaseManager databaseManager;
     private FileConfiguration tagsConfig;
     private File tagsFile;
-    private File dataFile;
-    private FileConfiguration dataConfig;
     private final Map<UUID, String> equippedTags;
 
-    public TagManager(SolarityChat plugin) {
+    public TagManager(SolarityChat plugin, DatabaseManager databaseManager) {
         this.plugin = plugin;
+        this.databaseManager = databaseManager;
         this.equippedTags = new HashMap<>();
         loadConfig();
         loadData();
@@ -38,23 +42,54 @@ public class TagManager {
     }
 
     private void loadData() {
-        dataFile = new File(plugin.getDataFolder(), "tag-data.yml");
-        if (!dataFile.exists()) {
-            try {
-                dataFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+        equippedTags.clear();
+        File oldDataFile = new File(plugin.getDataFolder(), "tag-data.yml");
+        if (oldDataFile.exists()) {
+            plugin.getLogger().info("Found legacy tag-data.yml, migrating to database...");
+            FileConfiguration dataConfig = YamlConfiguration.loadConfiguration(oldDataFile);
+            ConfigurationSection section = dataConfig.getConfigurationSection("equipped");
+            if (section != null) {
+                for (String uuidString : section.getKeys(false)) {
+                    try {
+                        UUID uuid = UUID.fromString(uuidString);
+                        String tagId = dataConfig.getString("equipped." + uuidString);
+                        equippedTags.put(uuid, tagId);
+                        saveTagToDatabaseSync(uuid, tagId);
+                    } catch (IllegalArgumentException ignored) {}
+                }
             }
+            if (oldDataFile.renameTo(new File(plugin.getDataFolder(), "tag-data.yml.old"))) {
+                plugin.getLogger().info("Tag migration complete.");
+            } else {
+                plugin.getLogger().warning("Tag migration finished but could not rename tag-data.yml!");
+            }
+        } else {
+            loadTagsFromDatabase();
         }
-        dataConfig = YamlConfiguration.loadConfiguration(dataFile);
+    }
 
-        ConfigurationSection section = dataConfig.getConfigurationSection("equipped");
-        if (section != null) {
-            for (String uuidString : section.getKeys(false)) {
-                UUID uuid = UUID.fromString(uuidString);
-                String tagId = dataConfig.getString("equipped." + uuidString);
-                equippedTags.put(uuid, tagId);
+    private void loadTagsFromDatabase() {
+        String query = "SELECT uuid, tag_id FROM player_tags";
+        try (Connection conn = databaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                equippedTags.put(UUID.fromString(rs.getString("uuid")), rs.getString("tag_id"));
             }
+        } catch (SQLException e) {
+            plugin.getLogger().severe("Could not load player tags: " + e.getMessage());
+        }
+    }
+
+    private void saveTagToDatabaseSync(UUID uuid, String tagId) {
+        String query = "INSERT OR REPLACE INTO player_tags (uuid, tag_id) VALUES (?, ?)";
+        try (Connection conn = databaseManager.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, uuid.toString());
+            stmt.setString(2, tagId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            plugin.getLogger().severe("Could not save player tag sync: " + e.getMessage());
         }
     }
 
@@ -64,26 +99,28 @@ public class TagManager {
     }
 
     public void saveData() {
-        for (Map.Entry<UUID, String> entry : equippedTags.entrySet()) {
-            dataConfig.set("equipped." + entry.getKey().toString(), entry.getValue());
-        }
-
-        try {
-            dataConfig.save(dataFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Now handled per-change in setTag or synchronously during migration.
     }
 
     public void setTag(UUID uuid, String tagId) {
         if (tagId == null) {
             equippedTags.remove(uuid);
-            dataConfig.set("equipped." + uuid.toString(), null);
+            plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+                String query = "DELETE FROM player_tags WHERE uuid = ?";
+                try (Connection conn = databaseManager.getConnection();
+                     PreparedStatement stmt = conn.prepareStatement(query)) {
+                    stmt.setString(1, uuid.toString());
+                    stmt.executeUpdate();
+                } catch (SQLException e) {
+                    plugin.getLogger().severe("Could not delete player tag: " + e.getMessage());
+                }
+            });
         } else {
             equippedTags.put(uuid, tagId);
-            dataConfig.set("equipped." + uuid.toString(), tagId);
+            plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+                saveTagToDatabaseSync(uuid, tagId);
+            });
         }
-        saveData();
     }
 
     public String getEquippedTag(UUID uuid) {
@@ -105,6 +142,7 @@ public class TagManager {
     public ConfigurationSection getTagsSection() {
         return tagsConfig.getConfigurationSection("tags");
     }
+
     public FileConfiguration getTagsConfig() {
         return tagsConfig;
     }

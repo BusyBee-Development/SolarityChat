@@ -8,7 +8,7 @@ formats:
     permission: ""
     
     prefix:
-      text: '<gray> '
+      text: '%luckperms_prefix%'
       hover:
         - '<gradient:#08B6FB:#ADF3FD><bold>PLAYER PROFILE</bold></gradient>'
         - '<dark_gray>%player_name%'
@@ -22,7 +22,7 @@ formats:
       click: 'RUN_COMMAND:/stats %player_name%'
     
     name:
-      text: '%luckperms_prefix%<white>%player_name%'
+      text: '<white>%player_name%'
       hover:
         - '<gradient:#08B6FB:#ADF3FD><bold>%player_name%</bold></gradient>'
         - '<gray>Click to message this player'

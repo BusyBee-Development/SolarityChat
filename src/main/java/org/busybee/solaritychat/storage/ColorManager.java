@@ -28,7 +28,6 @@ public class ColorManager {
                 .maximumSize(500)
                 .expireAfterAccess(30, TimeUnit.MINUTES)
                 .build(this::loadColorFromDatabase);
-        createTable();
         loadDefinitions();
     }
 
@@ -62,18 +61,6 @@ public class ColorManager {
         return colorDefinitions.get(id);
     }
 
-    private void createTable() {
-        String query = "CREATE TABLE IF NOT EXISTS player_colors (" +
-                "uuid TEXT PRIMARY KEY," +
-                "color_code TEXT NOT NULL" +
-                ")";
-        try (Connection conn = databaseManager.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.execute();
-        } catch (SQLException e) {
-            plugin.getLogger().severe("Could not create player_colors table: " + e.getMessage());
-        }
-    }
 
     private Optional<String> loadColorFromDatabase(UUID uuid) {
         String query = "SELECT color_code FROM player_colors WHERE uuid = ?";
