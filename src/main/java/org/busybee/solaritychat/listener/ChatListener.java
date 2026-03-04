@@ -176,7 +176,8 @@ public class ChatListener implements Listener {
         }
 
         final Component finalMessage = message;
-        final Component channelPrefix = MessageUtil.parse(channel.getPrefix() + " ");
+        boolean channelsEnabled = plugin.getChannelManager().isEnabled();
+        final Component channelPrefix = channelsEnabled ? MessageUtil.parse(channel.getPrefix() + " ") : Component.empty();
 
         org.bukkit.Sound resolvedMentionSound = null;
         if (mentionEnabled) {

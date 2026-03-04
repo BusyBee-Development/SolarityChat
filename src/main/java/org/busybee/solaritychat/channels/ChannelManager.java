@@ -13,6 +13,7 @@ public class ChannelManager {
     private final Map<String, ChatChannel> channels;
     private final Map<UUID, String> playerChannels;
     private String defaultChannel;
+    private boolean enabled;
 
     public ChannelManager(SolarityChat plugin) {
         this.plugin = plugin;
@@ -23,6 +24,7 @@ public class ChannelManager {
 
     public void loadChannels() {
         channels.clear();
+        enabled = plugin.getConfig().getBoolean("channels.enabled", true);
         var config = plugin.getConfigManager().getConfig("channels");
         if (config == null) {
             createDefaultChannels();
@@ -78,6 +80,10 @@ public class ChannelManager {
 
     public Collection<ChatChannel> getAvailableChannels() {
         return channels.values();
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public static class ChatChannel {

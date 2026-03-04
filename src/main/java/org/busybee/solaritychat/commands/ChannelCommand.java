@@ -24,6 +24,11 @@ public class ChannelCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (!plugin.getChannelManager().isEnabled()) {
+            sender.sendMessage(mm.deserialize("<red>Channels are currently disabled."));
+            return true;
+        }
+
         if (!(sender instanceof Player player)) {
             sender.sendMessage("Only players can use this command.");
             return true;
@@ -59,6 +64,9 @@ public class ChannelCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+        if (!plugin.getChannelManager().isEnabled()) {
+            return List.of();
+        }
         List<String> completions = new ArrayList<>();
         if (args.length == 1 && sender instanceof Player player) {
             String input = args[0].toLowerCase();
