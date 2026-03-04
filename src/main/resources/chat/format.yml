@@ -17,9 +17,6 @@ formats:
         - '<gradient:#08B6FB:#ADF3FD>| </gradient><white>Deaths: <aqua>%statistic_deaths%'
         - '<gradient:#08B6FB:#ADF3FD>| </gradient><white>Balance: <green>$%vault_eco_balance%'
         - '<gradient:#08B6FB:#ADF3FD>| </gradient><white>Playtime: <aqua>%statistic_time_played%'
-        - ''
-        - '<yellow>Click to view stats!'
-      click: 'RUN_COMMAND:/stats %player_name%'
     
     name:
       text: '<white>%player_name%'

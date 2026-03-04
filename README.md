@@ -7,7 +7,7 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 ### Chat Formatting
 - **Custom Chat Formats**: Fully customizable chat format with prefix, name, suffix, and message components
 - **Interactive Hover Text**: Display player statistics, balance, and playtime on hover
-- **Click Actions**: Click player names to view stats or execute commands
+- **Click Actions**: Click player names to message or execute commands
 - **Color & Formatting Support**: RGB hex colors, legacy color codes, and native MiniMessage support (gradients, rainbows)
 - **Chat Colors GUI**: Interactive paginated menu for selecting chat colors and gradients
 - **Permission-Based Formatting**: Control who can use colors and formatting codes
@@ -176,14 +176,6 @@ Customize all plugin messages and notifications.
 - **Vault**: For economy integration
 - **LiteBans**: For automatic punishment integration
 
-## Installation
-
-1. Download the latest release
-2. Place the JAR file in your server's `plugins` folder
-3. Restart your server
-4. Configure the plugin in `plugins/SolarityChat/`
-5. Run `/solaritychat reload` to apply changes
-
 ## Discord Webhook Setup
 
 1. Create a webhook in your Discord server
@@ -237,15 +229,9 @@ SolarityChat supports multiple chat channels. By default, it includes:
 
 Use `/channel <name>` to switch your active channel.
 
-## Support
-
-For issues, feature requests, or questions:
-- GitHub: https://github.com/BusyBee-Development
-- Discord: Join via `/discord` command in-game
-
 ## License
 
-Copyright (c) BusyBee Development. All rights reserved.
+Copyright (c) 2026 Busy Bee Development. All Rights Reserved.
 
 ## Credits
 
