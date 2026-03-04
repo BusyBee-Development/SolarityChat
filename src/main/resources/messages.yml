@@ -2,9 +2,10 @@
 # You can use Legacy (&) or MiniMessage (<color>) formatting.
 # MiniMessage Guide: https://docs.advntr.dev/minimessage/format.html
 
-plugin-prefix: "<dark_gray>[<gradient:#FFD700:#FFA500>Solarity</gradient>]<reset> "
+plugin-prefix: "<dark_gray>[<gradient:#FFD700:#FFA500>SolarityChat</gradient>]<reset> "
 
 no-permission: "%prefix%<red>You do not have permission to do this."
+command-usage: "%prefix%<red>Usage: /solaritychat <reload|test|toggle-alerts|warnings|setwarnings|clearwarnings>"
 reload-success: "%prefix%<green>Configuration files reloaded successfully."
 player-not-found: "%prefix%<red>Could not find that player."
 

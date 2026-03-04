@@ -48,19 +48,20 @@ public class ConfigManager {
         FileConfiguration messages = getConfig("messages");
         if (messages == null) return path;
         String message = messages.getString(path, "<red>Message not found: " + path);
+        String prefix = messages.getString("plugin-prefix", "<dark_gray>[<gold>SolarityChat</gold>]</dark_gray> ");
+        
+        if (message.contains("%prefix%")) {
+            return message.replace("%prefix%", prefix);
+        }
+        
         if (includePrefix) {
-            String prefix = messages.getString("plugin-prefix", "<dark_gray>[<gold>SolarityChat</gold>]</dark_gray> ");
-            message = prefix + message;
+            return prefix + message;
         }
         return message;
     }
 
     public String getMessage(String path) {
-        FileConfiguration messages = getConfig("messages");
-        if (messages == null) return path;
-        String message = messages.getString(path, "<red>Message not found: " + path);
-        String prefix = messages.getString("plugin-prefix", "<dark_gray>[<gold>SolarityChat</gold>]</dark_gray> ");
-        return message.replace("%prefix%", prefix);
+        return getFormattedMessage(path, true);
     }
 
     public String getMessageRaw(String path) {

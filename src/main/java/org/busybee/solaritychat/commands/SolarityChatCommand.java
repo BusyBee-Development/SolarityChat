@@ -27,7 +27,7 @@ public class SolarityChatCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage(mm.deserialize(plugin.getConfigManager().getMessage("no-permission")));
+            sender.sendMessage(mm.deserialize(plugin.getConfigManager().getMessage("command-usage")));
             return true;
         }
 
@@ -45,7 +45,7 @@ public class SolarityChatCommand implements CommandExecutor, TabCompleter {
             case "clearwarnings":
                 return handleClearWarnings(sender, args);
             default:
-                sender.sendMessage(mm.deserialize(plugin.getConfigManager().getMessage("no-permission")));
+                sender.sendMessage(mm.deserialize(plugin.getConfigManager().getMessage("command-usage")));
                 return true;
         }
     }
