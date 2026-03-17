@@ -11,6 +11,7 @@ import org.busybee.solaritychat.integration.VaultIntegration;
 import org.busybee.solaritychat.listener.ChatListener;
 import org.busybee.solaritychat.listeners.ColorGUIListener;
 import org.busybee.solaritychat.listeners.PlayerJoinListener;
+import org.busybee.solaritychat.managers.SpyManager;
 import org.busybee.solaritychat.storage.ColorManager;
 import org.busybee.solaritychat.storage.DatabaseManager;
 import org.busybee.solaritychat.storage.WarningManager;
@@ -39,6 +40,7 @@ public final class SolarityChat extends JavaPlugin {
     private GrammarManager grammarManager;
     private ChannelManager channelManager;
     private ColorCommand colorCommand;
+    private SpyManager spyManager;
 
     @Override
     public void onEnable() {
@@ -74,6 +76,7 @@ public final class SolarityChat extends JavaPlugin {
         announcementManager = new AnnouncementManager(this);
         grammarManager = new GrammarManager(this);
         channelManager = new ChannelManager(this);
+        spyManager = new SpyManager();
 
         vaultIntegration = new VaultIntegration(this);
         if (vaultIntegration.setup()) {
@@ -95,6 +98,7 @@ public final class SolarityChat extends JavaPlugin {
         MessageCommand msgCommand = new MessageCommand(this);
         getCommand("msg").setExecutor(msgCommand);
         getCommand("reply").setExecutor(msgCommand);
+        getCommand("spy").setExecutor(new SpyCommand(this));
 
         if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new SolarityChatExpansion(this).register();
@@ -151,4 +155,5 @@ public final class SolarityChat extends JavaPlugin {
     public AnnouncementManager getAnnouncementManager() { return announcementManager; }
     public GrammarManager getGrammarManager() { return grammarManager; }
     public ChannelManager getChannelManager() { return channelManager; }
+    public SpyManager getSpyManager() { return spyManager; }
 }

@@ -113,7 +113,7 @@ public class MessageCommand implements CommandExecutor {
 
         Component spyMsg = mm.deserialize("<dark_gray>[Spy] <gray>" + sender.getName() + " -> " + receiver.getName() + ": <white>" + sanitized);
         for (Player staff : Bukkit.getOnlinePlayers()) {
-            if (staff.hasPermission("solaritychat.spy") && !staff.equals(sender) && !staff.equals(receiver)) {
+            if (staff.hasPermission("solaritychat.spy") && !staff.equals(sender) && !staff.equals(receiver) && plugin.getSpyManager().isSpyEnabled(staff.getUniqueId())) {
                 staff.sendMessage(spyMsg);
             }
         }
