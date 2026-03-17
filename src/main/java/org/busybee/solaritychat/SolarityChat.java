@@ -17,6 +17,7 @@ import org.busybee.solaritychat.storage.WarningManager;
 import org.busybee.solaritychat.tags.TagGUI;
 import org.busybee.solaritychat.tags.TagManager;
 import org.busybee.solaritychat.util.ConfigManager;
+import org.busybee.solaritychat.util.ConfigValidator;
 import org.busybee.solaritychat.util.GrammarManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -49,6 +50,10 @@ public final class SolarityChat extends JavaPlugin {
         saveResourceIfNotPresent("chat" + File.separator + "announcements.yml");
         saveResourceIfNotPresent("chat" + File.separator + "channels.yml");
         saveResourceIfNotPresent("chat" + File.separator + "colors.yml");
+
+        // Validate and update configs (merges new fields while preserving user values)
+        ConfigValidator configValidator = new ConfigValidator(this);
+        configValidator.validateAllConfigs();
 
         configManager = new ConfigManager(this);
         databaseManager = new DatabaseManager(this);

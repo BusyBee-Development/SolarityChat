@@ -125,25 +125,37 @@ public abstract class ChatFilter {
                         .replace("%message%", message)
                         .replace("%filter_name%", name);
 
-                String footer = plugin.getConfig().getString("discord.embed.footer", "If this is false, un%action_verb% them.")
-                        .replace("%action_type%", actionType)
-                        .replace("%action_verb%", actionVerb)
-                        .replace("%player%", player.getName())
-                        .replace("%message%", message)
-                        .replace("%filter_name%", name);
+                String footer = plugin.getConfig().getString("discord.embed.footer", "");
+                if (!footer.isEmpty()) {
+                    footer = footer
+                            .replace("%action_type%", actionType)
+                            .replace("%action_verb%", actionVerb)
+                            .replace("%player%", player.getName())
+                            .replace("%message%", message)
+                            .replace("%filter_name%", name);
+                }
 
                 String color = plugin.getConfig().getString("discord.embed.color", "#3498db");
 
-                String timestampFormat = plugin.getConfig().getString("discord.embed.timestamp-format", "M/d/yy, h:mm a");
-                SimpleDateFormat sdf = new SimpleDateFormat(timestampFormat);
-                String timestamp = sdf.format(new Date());
+                String timestampFormat = plugin.getConfig().getString("discord.embed.timestamp-format", "");
+                String timestamp = "";
+                if (!timestampFormat.isEmpty()) {
+                    SimpleDateFormat sdf = new SimpleDateFormat(timestampFormat);
+                    timestamp = sdf.format(new Date());
+                }
 
-                String fullDescription = description + "\n" + footer + "\n\n" + timestamp;
+                StringBuilder fullDescription = new StringBuilder(description);
+                if (!footer.isEmpty()) {
+                    fullDescription.append("\n").append(footer);
+                }
+                if (!timestamp.isEmpty()) {
+                    fullDescription.append("\n\n").append(timestamp);
+                }
 
                 webhook.setUsername("SolarityChat");
                 webhook.addEmbed(new org.busybee.solaritychat.util.DiscordWebhook.EmbedObject()
                         .setTitle(title)
-                        .setDescription(fullDescription)
+                        .setDescription(fullDescription.toString())
                         .setColor(Color.decode(color)));
                 webhook.execute();
             } catch (Exception e) {

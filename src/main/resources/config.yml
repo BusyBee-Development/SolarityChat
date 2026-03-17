@@ -53,21 +53,25 @@ discord:
   
   # Configuration for the embed message sent to Discord.
   embed:
-    # Title of the embed. Supports: %action_type%
+    # Title of the embed.
+    # Supports: %action_type%, %action_verb%, %player%, %message%, %filter_name%
     title: "%action_type%"
-    
+
     # Sidebar color of the embed (Hex code).
     color: "#3498db"
-    
-    # Main content of the embed. 
-    # Supports: %player%, %action_verb%, %message%
+
+    # Main content of the embed.
+    # Supports: %action_type%, %action_verb%, %player%, %message%, %filter_name%
     description: "%player% has been %action_verb% because they said `%message%`"
-    
+
     # Text shown at the bottom of the embed.
+    # Supports: %action_type%, %action_verb%, %player%, %message%, %filter_name%
+    # Set to empty ("") to disable footer.
     footer: "If this is false, un%action_verb% them."
-    
+
     # Time format shown in the embed.
     # Uses Java DateTimeFormatter patterns.
+    # Set to empty ("") to disable timestamp.
     timestamp-format: "M/d/yy, h:mm a"
 
 # ------------------------------------------------------
