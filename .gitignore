@@ -5,7 +5,6 @@ target/
 lib/
 
 # Java related ignores
-java/
 *.class
 
 # IDE - IntelliJ IDEA
