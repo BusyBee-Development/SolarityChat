@@ -1,5 +1,6 @@
 package org.busybee.solaritychat;
 
+import org.bstats.bukkit.Metrics;
 import org.busybee.solaritychat.announcements.AnnouncementManager;
 import org.busybee.solaritychat.channels.ChannelManager;
 import org.busybee.solaritychat.commands.*;
@@ -104,6 +105,8 @@ public final class SolarityChat extends JavaPlugin {
             new SolarityChatExpansion(this).register();
             getLogger().info("PlaceholderAPI integration enabled!");
         }
+
+        new Metrics(this, 29470);
 
         getLogger().info("SolarityChat has been enabled!");
     }
