@@ -8,6 +8,6 @@ lib/
 *.class
 
 # IDE - IntelliJ IDEA
-.idea/
+.idea
 *.iml
 out/
