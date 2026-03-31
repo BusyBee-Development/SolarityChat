@@ -11,3 +11,4 @@ lib/
 .idea
 *.iml
 out/
+docs/
