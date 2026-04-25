@@ -59,7 +59,7 @@ public class TagGUI implements Listener {
             fillMaterial = Material.GRAY_STAINED_GLASS_PANE;
         }
 
-        Inventory inv = Bukkit.createInventory(null, rows * 9, MessageUtil.parse(title));
+        Inventory inv = Bukkit.createInventory(null, rows * 9, MessageUtil.parseGui(title));
 
         if (fillEmpty) {
             ItemStack filler = new ItemStack(fillMaterial);
@@ -104,22 +104,22 @@ public class TagGUI implements Listener {
 
                 if (meta != null) {
                     String name = itemSection.getString("name", tagId);
-                    meta.displayName(MessageUtil.parse(name));
+                    meta.displayName(MessageUtil.parseGui(name));
 
                     List<Component> lore = new ArrayList<>();
                     for (String line : itemSection.getStringList("lore")) {
-                        lore.add(MessageUtil.parse(line));
+                        lore.add(MessageUtil.parseGui(line));
                     }
 
                     String equippedTag = tagManager.getEquippedTag(player.getUniqueId());
                     if (tagId.equals(equippedTag)) {
                         lore.add(Component.empty());
-                        lore.add(mm.deserialize("<green>✔ Currently Equipped"));
+                        lore.add(MessageUtil.parseGui("<green>✔ Currently Equipped"));
                     }
 
                     if (!tagManager.hasPermission(player, tagId)) {
                         lore.add(Component.empty());
-                        lore.add(mm.deserialize("<red>✘ No Permission"));
+                        lore.add(MessageUtil.parseGui("<red>✘ No Permission"));
                     }
 
                     meta.lore(lore);
@@ -133,7 +133,7 @@ public class TagGUI implements Listener {
             if (page > 0) {
                 ItemStack previousPage = new ItemStack(Material.ARROW);
                 ItemMeta previousMeta = previousPage.getItemMeta();
-                previousMeta.displayName(mm.deserialize("<green>Previous Page"));
+                previousMeta.displayName(MessageUtil.parseGui("<green>Previous Page"));
                 previousPage.setItemMeta(previousMeta);
                 inv.setItem(previousPageSlot, previousPage);
             }
@@ -141,7 +141,7 @@ public class TagGUI implements Listener {
             if (tagIds.size() > endIndex) {
                 ItemStack nextPage = new ItemStack(Material.ARROW);
                 ItemMeta nextMeta = nextPage.getItemMeta();
-                nextMeta.displayName(mm.deserialize("<green>Next Page"));
+                nextMeta.displayName(MessageUtil.parseGui("<green>Next Page"));
                 nextPage.setItemMeta(nextMeta);
                 inv.setItem(nextPageSlot, nextPage);
             }
@@ -149,8 +149,8 @@ public class TagGUI implements Listener {
 
         ItemStack resetItem = new ItemStack(Material.BARRIER);
         ItemMeta resetMeta = resetItem.getItemMeta();
-        resetMeta.displayName(mm.deserialize("<red><bold>Reset Tag"));
-        resetMeta.lore(List.of(mm.deserialize("<gray>Click to remove your tag")));
+        resetMeta.displayName(MessageUtil.parseGui("<red><bold>Reset Tag"));
+        resetMeta.lore(List.of(MessageUtil.parseGui("<gray>Click to remove your tag")));
         resetItem.setItemMeta(resetMeta);
         inv.setItem(resetSlot, resetItem);
 
@@ -163,7 +163,7 @@ public class TagGUI implements Listener {
 
         String guiTitle = tagManager.getTagsConfig().getString("gui.title", "Select Your Tag");
         String viewTitle = PlainTextComponentSerializer.plainText().serialize(event.getView().title());
-        String expectedTitle = PlainTextComponentSerializer.plainText().serialize(MessageUtil.parse(guiTitle));
+        String expectedTitle = PlainTextComponentSerializer.plainText().serialize(MessageUtil.parseGui(guiTitle));
 
         if (!viewTitle.equals(expectedTitle)) return;
 

@@ -1,8 +1,12 @@
 package org.busybee.solaritychat.util;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MessageUtil {
 
@@ -12,6 +16,16 @@ public class MessageUtil {
         if (message == null || message.isEmpty()) return Component.empty();
         String converted = legacyToMini(message);
         return MINI.deserialize(converted);
+    }
+
+    public static Component parseGui(String message) {
+        return parse(message).decoration(TextDecoration.ITALIC, false);
+    }
+
+    public static List<Component> parseGui(List<String> lines) {
+        return lines.stream()
+                .map(MessageUtil::parseGui)
+                .collect(Collectors.toList());
     }
 
     public static String colorize(String message) {

@@ -70,7 +70,7 @@ public class ColorCommand implements CommandExecutor {
         String title = guiSection != null ? guiSection.getString("title", "<gradient:#FFD700:#FFA500>Chat Colors</gradient>") : "<gradient:#FFD700:#FFA500>Chat Colors</gradient>";
         int size = guiSection != null ? guiSection.getInt("size", 54) : 54;
 
-        Inventory gui = Bukkit.createInventory(null, size, MessageUtil.parse(title + (page > 0 ? " - Page " + (page + 1) : "")));
+        Inventory gui = Bukkit.createInventory(null, size, MessageUtil.parseGui(title + (page > 0 ? " - Page " + (page + 1) : "")));
 
         // Background fill
         if (guiSection != null && guiSection.contains("fill")) {
@@ -140,7 +140,7 @@ public class ColorCommand implements CommandExecutor {
         ItemStack item = XMaterial.matchXMaterial(mat).map(XMaterial::parseItem).orElse(XMaterial.GRAY_STAINED_GLASS_PANE.parseItem());
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(MessageUtil.parse(name));
+            meta.displayName(MessageUtil.parseGui(name));
             item.setItemMeta(meta);
         }
         return item;
@@ -150,7 +150,7 @@ public class ColorCommand implements CommandExecutor {
         ItemStack item = XMaterial.matchXMaterial(section.getString("material", "ARROW")).map(XMaterial::parseItem).orElse(new ItemStack(org.bukkit.Material.ARROW));
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(MessageUtil.parse(section.getString("name", "Page " + (targetPage + 1))));
+            meta.displayName(MessageUtil.parseGui(section.getString("name", "Page " + (targetPage + 1))));
             NamespacedKey pageKey = new NamespacedKey(plugin, "gui_page");
             meta.getPersistentDataContainer().set(pageKey, PersistentDataType.INTEGER, targetPage);
             item.setItemMeta(meta);
@@ -162,10 +162,10 @@ public class ColorCommand implements CommandExecutor {
         ItemStack item = XMaterial.matchXMaterial(section.getString("material", "BARRIER")).map(XMaterial::parseItem).orElse(new ItemStack(org.bukkit.Material.BARRIER));
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.displayName(MessageUtil.parse(section.getString("name", "<red>Reset Color")));
+            meta.displayName(MessageUtil.parseGui(section.getString("name", "<red>Reset Color")));
             List<String> loreStrings = section.getStringList("lore");
             if (!loreStrings.isEmpty()) {
-                meta.lore(loreStrings.stream().map(MessageUtil::parse).collect(Collectors.toList()));
+                meta.lore(MessageUtil.parseGui(loreStrings));
             }
             NamespacedKey actionKey = new NamespacedKey(plugin, "gui_action");
             meta.getPersistentDataContainer().set(actionKey, PersistentDataType.STRING, "reset");
@@ -190,19 +190,19 @@ public class ColorCommand implements CommandExecutor {
             String name = template.getString("name", def.displayName())
                     .replace("{display_name}", def.displayName())
                     .replace("{id}", def.id());
-            meta.displayName(MessageUtil.parse(name));
+            meta.displayName(MessageUtil.parseGui(name));
 
             String previewText = def.code().contains("gradient") || def.code().contains("rainbow") 
                     ? def.code() + PREVIEW_TEXT + (def.code().contains("gradient") ? "</gradient>" : "</rainbow>")
                     : def.code() + PREVIEW_TEXT;
 
             List<String> loreStrings = template.getStringList("lore");
-            meta.lore(loreStrings.stream().map(l -> MessageUtil.parse(l
+            meta.lore(MessageUtil.parseGui(loreStrings.stream().map(l -> l
                     .replace("{preview_text}", previewText)
                     .replace("{permission}", def.permission())
                     .replace("{id}", def.id())
                     .replace("{display_name}", def.displayName())
-            )).collect(Collectors.toList()));
+            ).collect(Collectors.toList())));
 
             if (template.getBoolean("glow", false)) {
                 XEnchantment.matchXEnchantment("unbreaking").ifPresent(xe -> {
