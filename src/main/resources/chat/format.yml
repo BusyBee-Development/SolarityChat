@@ -19,7 +19,7 @@ formats:
         - '<gradient:#08B6FB:#ADF3FD>| </gradient><white>Playtime: <aqua>%statistic_time_played%'
     
     name:
-      text: '<white>%player_name%'
+      text: '<white>%displayname%'
       hover:
         - '<gradient:#08B6FB:#ADF3FD><bold>%player_name%</bold></gradient>'
         - '<gray>Click to message this player'

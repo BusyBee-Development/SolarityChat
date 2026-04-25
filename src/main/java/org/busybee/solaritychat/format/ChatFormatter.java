@@ -96,7 +96,7 @@ public class ChatFormatter {
         String color = plugin.getColorManager().getPlayerColorCode(player.getUniqueId());
         text = text.replace("%player%", player.getName())
                    .replace("%player_name%", player.getName())
-                   .replace("%displayname%", player.getName())
+                   .replace("%displayname%", player.getDisplayName())
                    .replace("%tag%", tag)
                    .replace("%color%", color != null ? color : "");
         return text;
