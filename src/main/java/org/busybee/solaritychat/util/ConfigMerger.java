@@ -35,9 +35,6 @@ public class ConfigMerger {
         
         // Use the default config as a base for structure and comments
         transferSection(userConfig, defaultConfig, newConfig, "");
-        
-        // Add keys that exist in user config but not in default (preserving custom admin settings)
-        preserveUserKeys(userConfig, defaultConfig, newConfig);
 
         return newConfig;
     }
@@ -75,6 +72,9 @@ public class ConfigMerger {
                 newConfig.setInlineComments(key, defaultConfig.getInlineComments(key));
             }
         }
+
+        // Preserve user keys not in default for this section (recursive preservation)
+        preserveUserKeys(userConfig, defaultConfig, newConfig);
     }
 
     private void preserveUserKeys(ConfigurationSection userConfig, ConfigurationSection defaultConfig, ConfigurationSection newConfig) {
