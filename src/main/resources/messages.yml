@@ -35,3 +35,10 @@ chatMotd:
   - " <dark_gray>⬛ <white>Type <yellow>/tutorial</yellow> for help!"
   - ""
   - " <gray><underlined>play.solaritymc.net</underlined>"
+
+# Update Notifications
+update-notifier:
+  - "<yellow>⚠</yellow> <yellow><bold>Update Available!</bold></yellow>"
+  - "<gray>A new version of <gradient:#FFD700:#FFA500>SolarityChat</gradient> is available!</gray>"
+  - "<gray>Current: </gray><red><current></red> <gray>→ New: </gray><green><new></green>"
+  - "<aqua><u>Click here to download the update</u></aqua>"
