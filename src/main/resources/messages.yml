@@ -1,45 +1,41 @@
-# SolarityChat Messages Configuration
-# You can use Legacy (&) or MiniMessage (<color>) formatting.
-# MiniMessage Guide: https://docs.advntr.dev/minimessage/format.html
+plugin-prefix: '<dark_gray>[<gradient:#FFD700:#FFA500>SolarityChat</gradient>]<reset>'
 
-plugin-prefix: "<dark_gray>[<gradient:#FFD700:#FFA500>SolarityChat</gradient>]<reset> "
+no-permission: '%prefix%<red>You do not have permission to do this.'
+command-usage: '%prefix%<red>Usage: /solaritychat <reload|test|toggle-alerts|warnings|setwarnings|clearwarnings>'
+reload-success: '%prefix%<green>Configuration files reloaded successfully.'
+player-not-found: '%prefix%<red>Could not find that player.'
 
-no-permission: "%prefix%<red>You do not have permission to do this."
-command-usage: "%prefix%<red>Usage: /solaritychat <reload|test|toggle-alerts|warnings|setwarnings|clearwarnings>"
-reload-success: "%prefix%<green>Configuration files reloaded successfully."
-player-not-found: "%prefix%<red>Could not find that player."
+chat-cooldown: '%prefix%<red>Please wait <yellow>%time%</yellow> seconds before chatting again'
+staff-alert: '<dark_gray>[<red>ALERT<dark_gray>] <gray>%player% <white>triggered <red>%filter_name%<white>:<gray>%message%'
+player-violation: '%prefix%<red>Your message was not sent. Please review our server rules'
 
-chat-cooldown: "%prefix%<red>Please wait <yellow>%time%</yellow> seconds before chatting again."
-staff-alert: "<dark_gray>[<red>ALERT<dark_gray>] <gray>%player% <white>triggered <red>%filter_name%<white>: <gray>%message%"
-player-violation: "%prefix%<red>Your message was not sent. Please review our server rules."
+warnings-check: '%prefix%<yellow>%player% <white>has <red>%warnings% <white>warnings.'
+warnings-set: '%prefix%<white>Set <yellow>%player%<white>''s warnings to <red>%warnings%<white>.'
+warnings-cleared: '%prefix%<white>Cleared <yellow>%player%<white>''s warnings.'
 
-warnings-check: "%prefix%<yellow>%player% <white>has <red>%warnings% <white>warnings."
-warnings-set: "%prefix%<white>Set <yellow>%player%<white>'s warnings to <red>%warnings%<white>."
-warnings-cleared: "%prefix%<white>Cleared <yellow>%player%<white>'s warnings."
+alerts-enabled: '%prefix%<green>Staff alerts enabled.'
+alerts-disabled: '%prefix%<red>Staff alerts disabled.'
 
-alerts-enabled: "%prefix%<green>Staff alerts enabled."
-alerts-disabled: "%prefix%<red>Staff alerts disabled."
+test-triggered: '%prefix%<red>Would trigger filter: <yellow>%filter_name%'
+test-passed: '%prefix%<green>Message passed all filters.'
 
-test-triggered: "%prefix%<red>Would trigger filter: <yellow>%filter_name%"
-test-passed: "%prefix%<green>Message passed all filters."
-
-tag-selected: "%prefix%<green>You selected the tag: "
-tag-reset: "%prefix%<green>Your tag has been reset."
-no-tag-permission: "%prefix%<red>You don't have permission to use this tag."
+tag-selected: '%prefix%<green>You selected the tag: '
+tag-reset: '%prefix%<green>Your tag has been reset.'
+no-tag-permission: '%prefix%<red>You don''t have permission to use this tag.'
 
 chatMotd:
-  - "<gradient:#FFD700:#FFA500><bold>SOLARITY CHAT</bold></gradient>"
-  - " <white>Thank you for using <gradient:#FFD700:#FFA500>SolarityChat</gradient>!"
-  - ""
-  - " <dark_gray>⬛ <white>Customize chat with <yellow>/colors</yellow>"
-  - " <dark_gray>⬛ <white>Equip unique titles with <yellow>/tags</yellow>"
-  - " <dark_gray>⬛ <white>Need help? Use <yellow>/schat</yellow>"
-  - ""
-  - " <gray>Developed by <gradient:#FFD700:#FFA500>BusyBee</gradient>"
+  - '<gradient:#FFD700:#FFA500><bold>SOLARITY CHAT</bold></gradient>'
+  - '<white>Thank you for using <gradient:#FFD700:#FFA500>SolarityChat</gradient>!'
+  - ''
+  - ' <dark_gray>⬛ <white>Customize chat with <yellow>/colors</yellow>'
+  - ' <dark_gray>⬛ <white>Equip unique titles with <yellow>/tags</yellow>'
+  - ' <dark_gray>⬛ <white>Need help? Use <yellow>/schat</yellow>'
+  - ''
+  - ' <gray>Developed by <gradient:#FFD700:#FFA500>BusyBee</gradient>'
 
 # Update Notifications
 update-notifier:
-  - "<yellow>⚠</yellow> <yellow><bold>Update Available!</bold></yellow>"
-  - "<gray>A new version of <gradient:#FFD700:#FFA500>SolarityChat</gradient> is available!</gray>"
-  - "<gray>Current: </gray><red><current></red> <gray>→ New: </gray><green><new></green>"
-  - "<aqua><u>Click here to download the update</u></aqua>"
+  - '<yellow>⚠</yellow> <yellow><bold>Update Available!</bold></yellow>'
+  - '<gray>A new version of <gradient:#FFD700:#FFA500>SolarityChat</gradient> is available!</gray>'
+  - '<gray>Current: </gray><red><current></red> <gray>→ New: </gray><green><new></green>'
+  - '<aqua><u>Click here to download the update</u></aqua>'
