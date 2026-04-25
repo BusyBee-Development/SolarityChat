@@ -99,7 +99,6 @@ public class TagManager {
     }
 
     public void saveData() {
-        // Now handled per-change in setTag or synchronously during migration.
     }
 
     public void setTag(UUID uuid, String tagId) {
@@ -142,7 +141,6 @@ public class TagManager {
     public ConfigurationSection getTagsSection() {
         return tagsConfig.getConfigurationSection("tags");
     }
-
     public FileConfiguration getTagsConfig() {
         return tagsConfig;
     }

@@ -22,7 +22,6 @@ public class SpyManager {
     public boolean enableSpy(UUID playerUUID) {
         return spyEnabled.add(playerUUID);
     }
-
     public boolean disableSpy(UUID playerUUID) {
         return spyEnabled.remove(playerUUID);
     }

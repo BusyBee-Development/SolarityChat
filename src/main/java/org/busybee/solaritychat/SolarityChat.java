@@ -55,7 +55,6 @@ public final class SolarityChat extends JavaPlugin {
         saveResourceIfNotPresent("chat" + File.separator + "channels.yml");
         saveResourceIfNotPresent("chat" + File.separator + "colors.yml");
 
-        // Validate and update configs (merges new fields while preserving user values)
         try {
             ConfigValidator configValidator = new ConfigValidator(this);
             configValidator.validateAllConfigs();

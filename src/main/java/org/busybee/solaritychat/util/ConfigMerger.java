@@ -10,10 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Intelligently merges configuration files, preserving user values while adding new fields
- * and maintaining comments using the native Paper/Spigot API.
- */
 public class ConfigMerger {
 
     private final List<String> addedKeys = new ArrayList<>();
@@ -21,19 +17,11 @@ public class ConfigMerger {
     public ConfigMerger() {
     }
 
-    /**
-     * Merges default configuration with existing configuration.
-     *
-     * @param userConfig   The current user configuration
-     * @param defaultConfig The default configuration from resources
-     * @return The merged configuration
-     */
     public FileConfiguration merge(@NotNull FileConfiguration userConfig, @NotNull FileConfiguration defaultConfig) {
         addedKeys.clear();
 
         YamlConfiguration newConfig = new YamlConfiguration();
-        
-        // Use the default config as a base for structure and comments
+
         transferSection(userConfig, defaultConfig, newConfig, "");
 
         return newConfig;
@@ -46,7 +34,6 @@ public class ConfigMerger {
             if (defaultConfig.isConfigurationSection(key)) {
                 ConfigurationSection newSubSection = newConfig.createSection(key);
 
-                // Transfer comments from default
                 newConfig.setComments(key, defaultConfig.getComments(key));
                 newConfig.setInlineComments(key, defaultConfig.getInlineComments(key));
 
@@ -66,14 +53,12 @@ public class ConfigMerger {
                 }
 
                 newConfig.set(key, value);
-                
-                // Transfer comments from default
+
                 newConfig.setComments(key, defaultConfig.getComments(key));
                 newConfig.setInlineComments(key, defaultConfig.getInlineComments(key));
             }
         }
 
-        // Preserve user keys not in default for this section (recursive preservation)
         preserveUserKeys(userConfig, defaultConfig, newConfig);
     }
 
@@ -91,7 +76,6 @@ public class ConfigMerger {
                 } else {
                     newConfig.set(key, userConfig.get(key));
                 }
-                // Transfer comments if they exist in user config
                 newConfig.setComments(key, userConfig.getComments(key));
                 newConfig.setInlineComments(key, userConfig.getInlineComments(key));
             }
@@ -110,9 +94,6 @@ public class ConfigMerger {
         }
     }
 
-    /**
-     * Checks if migration is needed by comparing keys.
-     */
     public boolean needsMigration(@NotNull FileConfiguration userConfig, @NotNull FileConfiguration defaultConfig) {
         Set<String> defaultKeys = getAllKeys(defaultConfig, "");
         Set<String> userKeys = getAllKeys(userConfig, "");

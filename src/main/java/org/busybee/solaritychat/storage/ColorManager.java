@@ -56,7 +56,6 @@ public class ColorManager {
     public Map<String, ColorDefinition> getColorDefinitions() {
         return Collections.unmodifiableMap(colorDefinitions);
     }
-
     public ColorDefinition getColorDefinition(String id) {
         return colorDefinitions.get(id);
     }
@@ -102,7 +101,6 @@ public class ColorManager {
     public String getPlayerColor(UUID uuid) {
         return getPlayerColorCode(uuid);
     }
-
     public void preloadPlayerColor(UUID uuid) {
         colorCache.get(uuid);
     }

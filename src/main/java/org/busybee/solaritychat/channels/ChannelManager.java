@@ -77,11 +77,9 @@ public class ChannelManager {
     public void removePlayer(UUID uuid) {
         playerChannels.remove(uuid);
     }
-
     public Collection<ChatChannel> getAvailableChannels() {
         return channels.values();
     }
-
     public boolean isEnabled() {
         return enabled;
     }

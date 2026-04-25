@@ -28,11 +28,9 @@ public abstract class ChatFilter {
     }
 
     public abstract boolean check(Player player, String message);
-
     public String getName() {
         return name;
     }
-
     public List<String> getActions() {
         return actions;
     }

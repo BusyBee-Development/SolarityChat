@@ -72,7 +72,6 @@ public class ColorCommand implements CommandExecutor {
 
         Inventory gui = Bukkit.createInventory(null, size, MessageUtil.parseGui(title + (page > 0 ? " - Page " + (page + 1) : "")));
 
-        // Background fill
         if (guiSection != null && guiSection.contains("fill")) {
             ConfigurationSection fillSection = guiSection.getConfigurationSection("fill");
             if (fillSection != null) {
