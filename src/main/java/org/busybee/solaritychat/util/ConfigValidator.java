@@ -29,16 +29,6 @@ public class ConfigValidator {
         "messages.yml"
     };
 
-    // Chat folder config files (relative to plugin data folder)
-    private static final String[] CHAT_CONFIG_FILES = {
-        "chat/announcements.yml",
-        "chat/channels.yml",
-        "chat/colors.yml",
-        "chat/filters.yml",
-        "chat/format.yml",
-        "chat/tags.yml"
-    };
-
     public ConfigValidator(Plugin plugin) {
         this.plugin = plugin;
         this.backupManager = new ConfigBackupManager(plugin);
@@ -54,11 +44,6 @@ public class ConfigValidator {
         // Validate main config files
         for (String configFile : CONFIG_FILES) {
             validateConfig(configFile);
-        }
-
-        // Validate chat folder configs
-        for (String chatConfig : CHAT_CONFIG_FILES) {
-            validateConfig(chatConfig);
         }
 
         // Log summary
