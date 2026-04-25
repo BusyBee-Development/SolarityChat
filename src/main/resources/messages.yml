@@ -28,13 +28,14 @@ tag-reset: "%prefix%<green>Your tag has been reset."
 no-tag-permission: "%prefix%<red>You don't have permission to use this tag."
 
 chatMotd:
-  - "<gradient:#49C4FF:#08B6FB><bold>WELCOME</bold></gradient> <white>to <gradient:#49C4FF:#08B6FB><underlined>SolarityMC</underlined></gradient>!"
-  - " <white>→ <gray>(Generators)"
+  - "<gradient:#FFD700:#FFA500><bold>SOLARITY CHAT</bold></gradient>"
+  - " <white>Thank you for using <gradient:#FFD700:#FFA500>SolarityChat</gradient>!"
   - ""
-  - " <dark_gray>⬛ <white>This is <gradient:#49C4FF:#08B6FB><underlined>Season 1</underlined></gradient>"
-  - " <dark_gray>⬛ <white>Type <yellow>/tutorial</yellow> for help!"
+  - " <dark_gray>⬛ <white>Customize chat with <yellow>/colors</yellow>"
+  - " <dark_gray>⬛ <white>Equip unique titles with <yellow>/tags</yellow>"
+  - " <dark_gray>⬛ <white>Need help? Use <yellow>/schat</yellow>"
   - ""
-  - " <gray><underlined>play.solaritymc.net</underlined>"
+  - " <gray>Developed by <gradient:#FFD700:#FFA500>BusyBee</gradient>"
 
 # Update Notifications
 update-notifier:
