@@ -37,6 +37,17 @@ public class ConfigBackupManager {
      * @return The backup file, or null if backup failed
      */
     public File createBackup(File configFile) {
+        return createBackup(configFile, false);
+    }
+
+    /**
+     * Creates a backup of a configuration file, optionally marking it as corrupted.
+     *
+     * @param configFile  The config file to backup
+     * @param isCorrupted Whether the file is corrupted
+     * @return The backup file, or null if backup failed
+     */
+    public File createBackup(File configFile, boolean isCorrupted) {
         if (!configFile.exists()) {
             return null;
         }
@@ -44,14 +55,17 @@ public class ConfigBackupManager {
         try {
             String timestamp = DATE_FORMAT.format(new Date());
             String fileName = configFile.getName().replace(".yml", "");
-            String backupFileName = fileName + "-" + timestamp + ".yml";
+            String suffix = isCorrupted ? ".corrupted-" : "-";
+            String backupFileName = fileName + suffix + timestamp + ".yml";
             File backupFile = new File(backupDir, backupFileName);
 
             Files.copy(configFile.toPath(), backupFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            plugin.getLogger().info("Created backup: backups/" + backupFileName);
+            plugin.getLogger().info("Created " + (isCorrupted ? "corrupted file backup" : "backup") + ": backups/" + backupFileName);
 
             // Cleanup old backups
-            cleanupOldBackups(fileName);
+            if (!isCorrupted) {
+                cleanupOldBackups(fileName);
+            }
 
             return backupFile;
         } catch (IOException e) {

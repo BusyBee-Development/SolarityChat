@@ -1,13 +1,15 @@
 package org.busybee.solaritychat.util;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -76,14 +78,13 @@ public class ConfigValidator {
     private void validateConfig(String configPath) {
         File configFile = new File(plugin.getDataFolder(), configPath);
 
-        // If config doesn't exist, let Bukkit create it from defaults
+        // If config doesn't exist, it will be created normally by the plugin
         if (!configFile.exists()) {
-            plugin.getLogger().fine("Config not found, will be created: " + configPath);
             return;
         }
 
         // Load default config from resources
-        InputStream defaultStream = plugin.getResource(configPath);
+        InputStream defaultStream = plugin.getResource(configPath.replace('\\', '/'));
         if (defaultStream == null) {
             plugin.getLogger().warning("No default resource found for: " + configPath);
             return;
@@ -91,17 +92,24 @@ public class ConfigValidator {
 
         try {
             // Load configs
-            FileConfiguration existingConfig = YamlConfiguration.loadConfiguration(configFile);
+            FileConfiguration existingConfig = new YamlConfiguration();
+            try {
+                existingConfig.load(configFile);
+            } catch (InvalidConfigurationException | IOException e) {
+                plugin.getLogger().severe("Detected corruption in " + configPath + "! Backing up and regenerating...");
+                backupManager.createBackup(configFile, true);
+                configFile.delete();
+                plugin.saveResource(configPath.replace('\\', '/'), true);
+                totalFilesUpdated++;
+                return;
+            }
+
             FileConfiguration defaultConfig = YamlConfiguration.loadConfiguration(
-                new InputStreamReader(defaultStream)
+                new InputStreamReader(defaultStream, StandardCharsets.UTF_8)
             );
 
-            // Check if merge is needed
-            int fieldsToAdd = countMissingFields(existingConfig, defaultConfig);
-
-            if (fieldsToAdd > 0) {
-                plugin.getLogger().info("Updating " + configPath + " (" + fieldsToAdd + " new field(s))");
-
+            ConfigMerger merger = new ConfigMerger();
+            if (merger.needsMigration(existingConfig, defaultConfig)) {
                 // Create backup
                 File backup = backupManager.createBackup(configFile);
                 if (backup == null) {
@@ -110,59 +118,26 @@ public class ConfigValidator {
                 }
 
                 // Merge configs
-                int addedFields = ConfigMerger.mergeConfigs(existingConfig, defaultConfig);
+                FileConfiguration mergedConfig = merger.merge(existingConfig, defaultConfig);
 
                 // Save updated config
-                existingConfig.save(configFile);
+                mergedConfig.save(configFile);
 
-                totalFieldsAdded += addedFields;
+                List<String> addedKeys = merger.getAddedKeys();
+                totalFieldsAdded += addedKeys.size();
                 totalFilesUpdated++;
 
-                plugin.getLogger().info("Successfully updated " + configPath);
-            } else {
-                plugin.getLogger().fine(configPath + " is up to date");
+                plugin.getLogger().info("Updated " + configPath + ": Added " + addedKeys.size() + " new field(s)");
+                for (String key : addedKeys) {
+                    plugin.getLogger().info("  + " + key);
+                }
             }
 
             defaultStream.close();
 
         } catch (Exception e) {
             plugin.getLogger().severe("Failed to validate config " + configPath + ": " + e.getMessage());
-            e.printStackTrace();
         }
-    }
-
-    /**
-     * Counts how many fields are missing in the existing config compared to defaults.
-     *
-     * @param existing The existing configuration
-     * @param defaults The default configuration
-     * @return Number of missing fields
-     */
-    private int countMissingFields(FileConfiguration existing, FileConfiguration defaults) {
-        return countMissingFieldsRecursive(existing.getRoot(), defaults.getRoot());
-    }
-
-    /**
-     * Recursively counts missing fields in a configuration section.
-     */
-    private int countMissingFieldsRecursive(org.bukkit.configuration.ConfigurationSection existing,
-                                             org.bukkit.configuration.ConfigurationSection defaults) {
-        int missing = 0;
-
-        for (String key : defaults.getKeys(false)) {
-            if (!existing.contains(key)) {
-                missing++;
-            } else if (defaults.get(key) instanceof org.bukkit.configuration.ConfigurationSection) {
-                org.bukkit.configuration.ConfigurationSection existingSection = existing.getConfigurationSection(key);
-                org.bukkit.configuration.ConfigurationSection defaultSection = defaults.getConfigurationSection(key);
-
-                if (existingSection != null && defaultSection != null) {
-                    missing += countMissingFieldsRecursive(existingSection, defaultSection);
-                }
-            }
-        }
-
-        return missing;
     }
 
     /**
