@@ -50,3 +50,8 @@ formatting:
     underline: "solaritychat.format.underline"
     strikethrough: "solaritychat.format.strikethrough"
     magic: "solaritychat.format.magic"
+
+# Notes:
+# For added hover options you can do the following.
+# - '<gradient:#08B6FB:#ADF3FD>| </gradient><red>Health: <white>%player_health%/%player_max_health% ❤️'
+# - '<gradient:#08B6FB:#ADF3FD>| </gradient><green>mcMMO Level: <white>%mcmmo_power_level%'
