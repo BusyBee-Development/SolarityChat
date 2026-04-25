@@ -21,6 +21,7 @@ import org.busybee.solaritychat.tags.TagManager;
 import org.busybee.solaritychat.util.ConfigManager;
 import org.busybee.solaritychat.util.ConfigValidator;
 import org.busybee.solaritychat.util.GrammarManager;
+import org.busybee.solaritychat.util.UpdateChecker;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -88,6 +89,7 @@ public final class SolarityChat extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
         getServer().getPluginManager().registerEvents(new ColorGUIListener(this), this);
         getServer().getPluginManager().registerEvents(tagGUI, this);
+        getServer().getPluginManager().registerEvents(new UpdateChecker(this), this);
 
         getCommand("solaritychat").setExecutor(new SolarityChatCommand(this));
         getCommand("tags").setExecutor(new TagCommand(this, tagGUI));
