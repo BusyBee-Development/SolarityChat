@@ -67,21 +67,21 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 
 ## Commands
 
-| Command | Aliases | Description | Permission |
-|---------|---------|-------------|------------|
-| `/solaritychat` | `/schat` | Main plugin command | - |
-| `/solaritychat reload` | - | Reload configuration files | `solaritychat.reload` |
-| `/solaritychat test <msg>` | - | Test message against filters | `solaritychat.test` |
-| `/solaritychat toggle-alerts`| - | Toggle staff filter alerts | `solaritychat.toggle-alerts` |
-| `/solaritychat warnings <p>` | - | View player warnings | `solaritychat.warnings.view` |
-| `/solaritychat setwarnings <p> <n>` | - | Set player warnings | `solaritychat.warnings.manage` |
-| `/solaritychat clearwarnings <p>` | - | Clear player warnings | `solaritychat.warnings.manage` |
-| `/tags` | `/sctags` | Open tag selection GUI | `solaritychat.tags` |
-| `/colors` | `/chatcolors` | Open chat color selection GUI | `solaritychat.colors` |
-| `/channel <name>` | `/ch` | Switch chat channels | `solaritychat.channel.<name>` |
-| `/msg <p> <msg>` | `/whisper` | Send a private message | - |
-| `/reply <msg>` | `/r` | Reply to last private message | - |
-| `/clearchat` | `/cc` | Clear chat for all players | `solaritychat.clearchat` |
+| Command                             | Aliases       | Description                   | Permission                     |
+|-------------------------------------|---------------|-------------------------------|--------------------------------|
+| `/solaritychat`                     | `/schat`      | Main plugin command           | -                              |
+| `/solaritychat reload`              | -             | Reload configuration files    | `solaritychat.reload`          |
+| `/solaritychat test <msg>`          | -             | Test message against filters  | `solaritychat.test`            |
+| `/solaritychat toggle-alerts`       | -             | Toggle staff filter alerts    | `solaritychat.toggle-alerts`   |
+| `/solaritychat warnings <p>`        | -             | View player warnings          | `solaritychat.warnings.view`   |
+| `/solaritychat setwarnings <p> <n>` | -             | Set player warnings           | `solaritychat.warnings.manage` |
+| `/solaritychat clearwarnings <p>`   | -             | Clear player warnings         | `solaritychat.warnings.manage` |
+| `/tags`                             | `/sctags`     | Open tag selection GUI        | `solaritychat.tags`            |
+| `/colors`                           | `/chatcolors` | Open chat color selection GUI | `solaritychat.colors`          |
+| `/channel <name>`                   | `/ch`         | Switch chat channels          | `solaritychat.channel.<name>`  |
+| `/msg <p> <msg>`                    | `/whisper`    | Send a private message        | -                              |
+| `/reply <msg>`                      | `/r`          | Reply to last private message | -                              |
+| `/clearchat`                        | `/cc`         | Clear chat for all players    | `solaritychat.clearchat`       |
 
 ## Permissions
 
@@ -113,16 +113,16 @@ Advanced chat management plugin for Minecraft servers with comprehensive filteri
 
 ## PlaceholderAPI Integration
 
-| Placeholder | Description |
-|-------------|-------------|
-| `%solaritychat_tag%` | Player's equipped tag display name |
-| `%solaritychat_warnings%` | Player's total warnings |
-| `%solaritychat_color%` | Player's selected color code |
-| `%solaritychat_color_id%` | Player's selected color ID |
+| Placeholder                    | Description                          |
+|--------------------------------|--------------------------------------|
+| `%solaritychat_tag%`           | Player's equipped tag display name   |
+| `%solaritychat_warnings%`      | Player's total warnings              |
+| `%solaritychat_color%`         | Player's selected color code         |
+| `%solaritychat_color_id%`      | Player's selected color ID           |
 | `%solaritychat_color_display%` | Player's selected color display name |
-| `%solaritychat_vault_balance%` | Player's economy balance |
-| `%solaritychat_vault_prefix%` | Player's Vault/LuckPerms prefix |
-| `%solaritychat_vault_suffix%` | Player's Vault/LuckPerms suffix |
+| `%solaritychat_vault_balance%` | Player's economy balance             |
+| `%solaritychat_vault_prefix%`  | Player's Vault/LuckPerms prefix      |
+| `%solaritychat_vault_suffix%`  | Player's Vault/LuckPerms suffix      |
 
 ## Configuration
 
@@ -231,10 +231,4 @@ Use `/channel <name>` to switch your active channel.
 
 ## License
 
-Copyright (c) 2026 Busy Bee Development. All Rights Reserved.
-
-## Credits
-
-**Author**: BusyBee  
-**Version**: 1.0  
-**API Version**: 1.20.1
+Copyright (c) 2026 Busy Bee Development. All Rights Reserved.     
