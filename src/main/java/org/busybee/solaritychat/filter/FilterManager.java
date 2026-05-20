@@ -81,6 +81,10 @@ public class FilterManager {
         loadFilters();
     }
 
+    public int getFiltersCount() {
+        return filters.size();
+    }
+
     public static class FilterResult {
         private final boolean triggered;
         private final String filterName;

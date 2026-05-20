@@ -1,6 +1,5 @@
 package org.busybee.solaritychat;
 
-import org.bstats.bukkit.Metrics;
 import org.busybee.solaritychat.announcements.AnnouncementManager;
 import org.busybee.solaritychat.channels.ChannelManager;
 import org.busybee.solaritychat.commands.*;
@@ -18,10 +17,7 @@ import org.busybee.solaritychat.storage.DatabaseManager;
 import org.busybee.solaritychat.storage.WarningManager;
 import org.busybee.solaritychat.tags.TagGUI;
 import org.busybee.solaritychat.tags.TagManager;
-import org.busybee.solaritychat.util.ConfigManager;
-import org.busybee.solaritychat.util.ConfigValidator;
-import org.busybee.solaritychat.util.GrammarManager;
-import org.busybee.solaritychat.util.UpdateChecker;
+import org.busybee.solaritychat.util.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -43,6 +39,7 @@ public final class SolarityChat extends JavaPlugin {
     private ChannelManager channelManager;
     private ColorCommand colorCommand;
     private SpyManager spyManager;
+    private FastStatsManager fastStatsManager;
 
     @Override
     public void onEnable() {
@@ -107,7 +104,9 @@ public final class SolarityChat extends JavaPlugin {
             getLogger().info("PlaceholderAPI integration enabled!");
         }
 
-        new Metrics(this, 29470);
+        new BStatsManager(this);
+        fastStatsManager = new FastStatsManager(this);
+        fastStatsManager.onEnable();
 
         getLogger().info("SolarityChat has been enabled!");
     }
@@ -122,6 +121,9 @@ public final class SolarityChat extends JavaPlugin {
         }
         if (tagManager != null) {
             tagManager.saveData();
+        }
+        if (fastStatsManager != null) {
+            fastStatsManager.onDisable();
         }
         getLogger().info("SolarityChat has been disabled!");
     }
